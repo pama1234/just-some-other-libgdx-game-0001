@@ -5,7 +5,7 @@ mainClassName = 'pama1234.gdx.game.app.server.ServerLauncher'
 eclipse.project.name = appName + '-server'
 
 dependencies {
-
+	api 'com.github.pama1234.just-some-other-libgdx-game:server-framework:a161f6dee8'
 }
 
 jar {
