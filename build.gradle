@@ -54,7 +54,7 @@ configure(subprojects - project(':android')) {
 
 subprojects {
 	version = '0.0.1'
-	ext.appName = 'game-duel-neat'
+	ext.appName = 'game'
 	repositories {
 		mavenCentral()
 		maven { url 'https://s01.oss.sonatype.org' }
@@ -66,4 +66,4 @@ subprojects {
 	}
 }
 
-eclipse.project.name = 'game-duel-neat' + '-parent'
+eclipse.project.name = 'game' + '-parent'

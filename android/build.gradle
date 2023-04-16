@@ -24,6 +24,7 @@ android {
 		}
 	}
 	packagingOptions {
+    pickFirst "javax/vecmath/ExceptionStrings.properties"
 		// Preventing from license violations (more or less):
 		pickFirst 'META-INF/LICENSE.txt'
 		pickFirst 'META-INF/LICENSE'
@@ -40,7 +41,7 @@ android {
 	}
 	defaultConfig {
 		applicationId 'pama1234.gdx.game.app'
-		minSdkVersion 19
+		minSdkVersion 26
 		targetSdkVersion 32
 		versionCode 1
 		versionName "1.0"
