@@ -5,7 +5,16 @@ mainClassName = 'pama1234.game.app.server.launcher.ServerLauncher'
 eclipse.project.name = appName + '-server'
 
 dependencies {
-	implementation "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
+	compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
+
+	compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
+
+  compileOnlyApi 'commons-cli:commons-cli:1.5.0'
+
+  compileOnlyApi 'ai.djl:api:0.21.0'
+
+  compileOnlyApi 'ai.djl:basicdataset:0.21.0'
+  compileOnlyApi 'ai.djl:model-zoo:0.21.0'
 }
 
 jar {
