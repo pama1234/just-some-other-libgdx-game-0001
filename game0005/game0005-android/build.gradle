@@ -93,7 +93,7 @@ configurations { natives }
 dependencies {
 	coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 	implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-	implementation project(':core')
+	implementation project(':game0005:game0005-core')
 
 	natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
 	natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
@@ -167,4 +167,4 @@ task run(type: Exec) {
 	commandLine "$adb", 'shell', 'am', 'start', '-n', 'pama1234.gdx.game.app/pama1234.gdx.game.app.android.AndroidLauncher'
 }
 
-eclipse.project.name = appName + "-android"
+eclipse.project.name = appName + "-game0005-android"

@@ -1,1 +1,1 @@
-include 'lwjgl3', 'server', 'core', 'android', 'headless'
+include 'game0005:game0005-android', 'game0005:game0005-lwjgl3', 'game0005:game0005-core', 'game0005:game0005-server'

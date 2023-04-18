@@ -19,20 +19,20 @@ else {
 
 sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
 mainClassName = 'pama1234.gdx.game.app.lwjgl3.Launcher'
-eclipse.project.name = appName + '-lwjgl3'
+eclipse.project.name = appName + '-game0005-lwjgl3'
 sourceCompatibility = 17
 
 dependencies {
 	implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
 	implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
-	implementation project(':core')
+	implementation project(':game0005:game0005-core')
 }
 
 def os = System.properties['os.name'].toLowerCase()
 
 run {
-	workingDir = rootProject.file('assets').path
+  workingDir = rootProject.file('../assets').path
 	setIgnoreExitValue(true)
 
 	if (os.contains('mac')) {

@@ -2,16 +2,23 @@
 .gradle/
 gradle-app.setting
 /build/
-/android/build/
-/core/build/
-/lwjgl2/build/
-/lwjgl3/build/
-/html/build/
-/ios/build/
-/ios-moe/build/
-/headless/build/
-/server/build/
-/shared/build/
+/framework/build/
+/server-framework/build/
+/game*/build/
+/game*/game*-android/build/
+/game*/game*-taptap/build/
+/game*/game*-pico4/build/
+/game*/game*-core/build/
+/game*/game*-lwjgl2/build/
+/game*/game*-lwjgl3/build/
+/game*/game*-html/build/
+/game*/game*-ios/build/
+/game*/game*-ios-moe/build/
+/game*/game*-headless/build/
+/game*/game*-server/build/
+/game*/game*-shared/build/
+
+/framework*/framework*-*/build/
 
 ## Java:
 *.class
@@ -21,37 +28,57 @@ hs_err_pid*
 .attach_pid*
 
 ## Android:
-/android/libs/armeabi-v7a/
-/android/libs/arm64-v8a/
-/android/libs/x86/
-/android/libs/x86_64/
-/android/gen/
-/android/out/
+/game*/game*-android/libs/armeabi-v7a/
+/game*/game*-android/libs/arm64-v8a/
+/game*/game*-android/libs/x86/
+/game*/game*-android/libs/x86_64/
+/game*/game*-android/gen/
+/game*/game*-android/out/
 local.properties
 com_crashlytics_export_strings.xml
+
+## pico4:
+/game*/game*-pico4/libs/armeabi-v7a/
+/game*/game*-pico4/libs/arm64-v8a/
+/game*/game*-pico4/libs/x86/
+/game*/game*-pico4/libs/x86_64/
+/game*/game*-pico4/gen/
+/game*/game*-pico4/out/
+
+/game*/game*-pico4/.cxx
+
+## Taptap:
+/game*/game*-taptap/libs/armeabi-v7a/
+/game*/game*-taptap/libs/arm64-v8a/
+/game*/game*-taptap/libs/x86/
+/game*/game*-taptap/libs/x86_64/
+/game*/game*-taptap/gen/
+/game*/game*-taptap/out/
 
 *.jks
 *.p12
 **/signing.properties
-/android/release
+/game*/game*-android/release
+/game*/game*-taptap/release
+/game*/game*-pico4/release
 
 ## Robovm:
 /ios/robovm-build/
 
 ## iOS:
-/ios/xcode/*.xcodeproj/*
-!/ios/xcode/*.xcodeproj/xcshareddata
-!/ios/xcode/*.xcodeproj/project.pbxproj
-/ios/xcode/native/
-/ios/IOSLauncher.app
-/ios/IOSLauncher.app.dSYM
+/game*/game*-ios/xcode/*.xcodeproj/*
+!/game*/game*-ios/xcode/*.xcodeproj/xcshareddata
+!/game*/game*-ios/xcode/*.xcodeproj/project.pbxproj
+/game*/game*-ios/xcode/native/
+/game*/game*-ios/IOSLauncher.app
+/game*/game*-ios/IOSLauncher.app.dSYM
 
 ## GWT:
-/html/war/
-/html/gwt-unitCache/
+/game*/game*-html/war/
+/game*/game*-html/gwt-unitCache/
 .apt_generated/
-/html/war/WEB-INF/deploy/
-/html/war/WEB-INF/classes/
+/game*/game*-html/war/WEB-INF/deploy/
+/game*/game*-html/war/WEB-INF/classes/
 .gwt/
 gwt-unitCache/
 www-test/
@@ -63,20 +90,26 @@ www-test/
 *.iws
 *.iml
 
+.run/
+
 ## Eclipse:
 .classpath
 .project
 .metadata/
-/android/bin/
-/core/bin/
-/lwjgl2/bin/
-/lwjgl3/bin/
-/html/bin/
-/ios/bin/
-/ios-moe/bin/
-/headless/bin/
-/server/bin/
-/shared/bin/
+/framework/bin/
+/server-framework/bin/
+/game*/game*-android/bin/
+/game*/game*-taptap/bin/
+/game*/game*-pico4/bin/
+/game*/game*-core/bin/
+/game*/game*-lwjgl2/bin/
+/game*/game*-lwjgl3/bin/
+/game*/game*-html/bin/
+/game*/game*-ios/bin/
+/game*/game*-ios-moe/bin/
+/game*/game*-headless/bin/
+/game*/game*-server/bin/
+/game*/game*-shared/bin/
 *.tmp
 *.bak
 *.swp
@@ -86,56 +119,84 @@ www-test/
 .externalToolBuilders/
 *.launch
 
+/framework*/framework*-*/bin/
 
 ## NetBeans:
 
 /nbproject/private/
-/android/nbproject/private/
-/core/nbproject/private/
-/lwjgl2/nbproject/private/
-/lwjgl3/nbproject/private/
-/html/nbproject/private/
-/ios/nbproject/private/
-/ios-moe/nbproject/private/
-/headless/nbproject/private/
-/server/nbproject/private/
-/shared/nbproject/private/
+/framework/nbproject/private/
+/server-framework/nbproject/private/
+/game*/nbproject/private/
+/game*/game*-android/nbproject/private/
+/game*/game*-taptap/nbproject/private/
+/game*/game*-pcio4/nbproject/private/
+/game*/game*-core/nbproject/private/
+/game*/game*-lwjgl2/nbproject/private/
+/game*/game*-lwjgl3/nbproject/private/
+/game*/game*-html/nbproject/private/
+/game*/game*-ios/nbproject/private/
+/game*/game*-ios-moe/nbproject/private/
+/game*/game*-headless/nbproject/private/
+/game*/game*-server/nbproject/private/
+/game*/game*-shared/nbproject/private/
 
-/nbbuild/
-/android/nbbuild/
-/core/nbbuild/
-/lwjgl2/nbbuild/
-/lwjgl3/nbbuild/
-/html/nbbuild/
-/ios/nbbuild/
-/ios-moe/nbbuild/
-/headless/nbbuild/
-/server/nbbuild/
-/shared/nbbuild/
+/framework*/framework*-*/nbproject/private/
+
+/game*/nbbuild/
+/framework/nbbuild/
+/server-framework/nbbuild/
+/game*/game*-android/nbbuild/
+/game*/game*-taptap/nbbuild/
+/game*/game*-pico4/nbbuild/
+/game*/game*-core/nbbuild/
+/game*/game*-lwjgl2/nbbuild/
+/game*/game*-lwjgl3/nbbuild/
+/game*/game*-html/nbbuild/
+/game*/game*-ios/nbbuild/
+/game*/game*-ios-moe/nbbuild/
+/game*/game*-headless/nbbuild/
+/game*/game*-server/nbbuild/
+/game*/game*-shared/nbbuild/
+
+/framework*/framework*-*/nbbuild/
 
 /dist/
-/android/dist/
-/core/dist/
-/lwjgl2/dist/
-/lwjgl3/dist/
-/html/dist/
-/ios/dist/
-/ios-moe/dist/
-/headless/dist/
-/server/dist/
-/shared/dist/
+/framework/dist/
+/server-framework/dist/
+/game*/dist/
+/game*/game*-android/dist/
+/game*/game*-taptap/dist/
+/game*/game*-pico4/dist/
+/game*/game*-core/dist/
+/game*/game*-lwjgl2/dist/
+/game*/game*-lwjgl3/dist/
+/game*/game*-html/dist/
+/game*/game*-ios/dist/
+/game*/game*-ios-moe/dist/
+/game*/game*-headless/dist/
+/game*/game*-server/dist/
+/game*/game*-shared/dist/
+
+/framework*/framework*-*/dist/
 
 /nbdist/
-/android/nbdist/
-/core/nbdist/
-/lwjgl2/nbdist/
-/lwjgl3/nbdist/
-/html/nbdist/
-/ios/nbdist/
-/ios-moe/nbdist/
-/headless/nbdist/
-/server/nbdist/
-/shared/nbdist/
+/framework/nbdist/
+/server-framework/nbdist/
+/game*/nbdist/
+/game*/game*-android/nbdist/
+/game*/game*-taptap/nbdist/
+/game*/game*-pico4/nbdist/
+/game*/game*-core/nbdist/
+/game*/game*-lwjgl2/nbdist/
+/game*/game*-lwjgl3/nbdist/
+/game*/game*-html/nbdist/
+/game*/game*-ios/nbdist/
+/game*/game*-ios-moe/nbdist/
+/game*/game*-headless/nbdist/
+/game*/game*-server/nbdist/
+/game*/game*-shared/nbdist/
+
+/framework*/framework*-*/nbdist/
 
 nbactions.xml
 nb-configuration.xml
@@ -148,6 +209,15 @@ Thumbs.db
 *~
 *.*#
 *#*#
+
+/fontOut/
+/data/
+/game*/data/
+
+## TODO
+/game*/assets/vector/*.tvgt
+/game*/assets/vector/*.tga
+/game*/assets/vector/*.svg
 
 /*.jar
 

@@ -31,7 +31,9 @@ allprojects {
 	apply plugin: 'idea'
 }
 
-configure(subprojects - project(':android')) {
+configure(subprojects 
+    - [ project('game0005') ]
+		- [ project(':game0005:game0005-android') ]) {
 	apply plugin: 'java-library'
 	sourceCompatibility = 17
 	compileJava {
