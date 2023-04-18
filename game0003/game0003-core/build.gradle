@@ -1,0 +1,11 @@
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-game0003-core'
+
+dependencies {
+  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+
+  api project(':game0003:game0003-server')
+
+	compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234Version"
+	compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
+}

@@ -32,7 +32,8 @@ allprojects {
 }
 
 configure(subprojects 
-    - [ project('game0005') ]
+    - [ project('game0005') , project('game0003') ]
+    - [ project('game0003:game0003-android') ]
 		- [ project(':game0005:game0005-android') ]) {
 
   apply plugin: "java"
