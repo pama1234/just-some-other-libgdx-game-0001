@@ -2,8 +2,8 @@ package pama1234.gdx.game.duel.util.state;
 
 import com.badlogic.gdx.graphics.Color;
 
-import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
+import pama1234.app.game.server.duel.util.Const;
 import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;

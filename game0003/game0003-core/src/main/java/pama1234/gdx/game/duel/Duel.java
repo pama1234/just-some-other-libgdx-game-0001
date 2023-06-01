@@ -1,6 +1,6 @@
 package pama1234.gdx.game.duel;
 
-import static pama1234.game.app.server.duel.util.Const.CANVAS_SIZE;
+import static pama1234.app.game.server.duel.util.Const.CANVAS_SIZE;
 import static pama1234.gdx.game.duel.Config.neat;
 
 import com.badlogic.gdx.Gdx;

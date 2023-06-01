@@ -3,8 +3,8 @@ package pama1234.gdx.game.duel.util.ai.nnet;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-import pama1234.game.app.server.duel.util.Const;
-import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.actor.AbstractPlayerActor;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.util.element.Graphics;
 

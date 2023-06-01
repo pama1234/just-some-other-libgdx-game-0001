@@ -1,7 +1,7 @@
 package pama1234.gdx.game.duel.util.state;
 
-import pama1234.game.app.server.duel.util.state.ServerGameSystemState;
 import pama1234.gdx.game.duel.Duel;
+import pama1234.app.game.server.duel.util.state.ServerGameSystemState;
 import pama1234.gdx.game.duel.ClientGameSystem;
 
 public abstract class ClientGameSystemState extends ServerGameSystemState{

@@ -2,10 +2,10 @@ package pama1234.gdx.game.duel.util.player;
 
 import com.badlogic.gdx.graphics.Color;
 
-import pama1234.game.app.server.duel.util.Const;
-import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
-import pama1234.game.app.server.duel.util.player.PlayerActorState;
-import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
+import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.input.AbstractInputDevice;
+import pama1234.app.game.server.duel.util.player.PlayerActorState;
+import pama1234.app.game.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.util.arrow.LongbowArrowHead;
 import pama1234.gdx.game.duel.util.arrow.LongbowArrowShaft;

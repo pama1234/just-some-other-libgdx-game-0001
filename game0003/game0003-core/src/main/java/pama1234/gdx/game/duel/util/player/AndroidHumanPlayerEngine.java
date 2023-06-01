@@ -1,6 +1,6 @@
 package pama1234.gdx.game.duel.util.player;
 
-import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
+import pama1234.app.game.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.util.input.InputData;
 
 public class AndroidHumanPlayerEngine extends HumanPlayerEngine{

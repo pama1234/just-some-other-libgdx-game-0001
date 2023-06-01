@@ -1,6 +1,6 @@
 package pama1234.gdx.game.duel.util;
 
-import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
+import pama1234.app.game.server.duel.util.input.AbstractInputDevice;
 
 public final class DisabledInputDevice extends AbstractInputDevice{
   @Override

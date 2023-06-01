@@ -1,12 +1,12 @@
 package pama1234.gdx.game.duel.util.state;
 
-import pama1234.game.app.server.duel.util.Const;
-import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
-import pama1234.game.app.server.duel.util.actor.Actor;
-import pama1234.game.app.server.duel.util.actor.ActorGroup;
-import pama1234.game.app.server.duel.util.actor.NullPlayerActor;
-import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.Duel;
+import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.app.game.server.duel.util.actor.Actor;
+import pama1234.app.game.server.duel.util.actor.ActorGroup;
+import pama1234.app.game.server.duel.util.actor.NullPlayerActor;
+import pama1234.app.game.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.TextUtil;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;

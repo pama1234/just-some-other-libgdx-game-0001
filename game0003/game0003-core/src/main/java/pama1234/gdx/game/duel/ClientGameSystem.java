@@ -1,8 +1,8 @@
 package pama1234.gdx.game.duel;
 
-import pama1234.game.app.server.duel.ServerGameSystem;
-import pama1234.game.app.server.duel.util.Const;
-import pama1234.game.app.server.duel.util.player.PlayerEngine;
+import pama1234.app.game.server.duel.ServerGameSystem;
+import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.player.PlayerEngine;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.gdx.game.duel.util.ai.mech.ComputerPlayerEngine;
 import pama1234.gdx.game.duel.util.ai.nnet.ComputerLifeEngine;

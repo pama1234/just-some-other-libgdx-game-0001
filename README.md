@@ -7,6 +7,8 @@ implementation "com.github.pama1234.just-some-other-libgdx-game:server-framework
 implementation "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234Version"
 ```
 
+对于某一些IDE的用户（没错，我在说vscode），有些时候`git pull`后应当清理工作空间
+
 ## 游戏合集
 
 1. 空想世界1【另一个git托管】
