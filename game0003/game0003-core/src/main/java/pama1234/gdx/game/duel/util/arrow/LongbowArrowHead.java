@@ -2,7 +2,7 @@ package pama1234.gdx.game.duel.util.arrow;
 
 import pama1234.gdx.game.duel.Duel;
 
-public final class LongbowArrowHead extends LongbowArrowComponent{
+public final class LongbowArrowHead extends ClientLongbowArrowComponent{
   public final float halfHeadLength=24;
   public final float halfHeadWidth=24;
   public LongbowArrowHead(Duel duel) {

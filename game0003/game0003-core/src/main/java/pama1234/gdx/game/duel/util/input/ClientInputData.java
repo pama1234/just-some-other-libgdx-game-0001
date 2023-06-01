@@ -5,16 +5,10 @@ import static com.badlogic.gdx.Input.Keys.LEFT;
 import static com.badlogic.gdx.Input.Keys.RIGHT;
 import static com.badlogic.gdx.Input.Keys.UP;
 
+import pama1234.app.game.server.duel.util.input.ServerInputData;
 import pama1234.gdx.game.duel.Duel;
 
-public final class InputData{
-  public float dx,dy;
-  public boolean isUpPressed=false;
-  public boolean isDownPressed=false;
-  public boolean isLeftPressed=false;
-  public boolean isRightPressed=false;
-  public boolean isZPressed=false;
-  public boolean isXPressed=false;
+public class ClientInputData extends ServerInputData{
   public void targetTouchMoved(float dxIn,float dyIn,float mag) {
     float dist=mag;
     if(dist<0.01f) {

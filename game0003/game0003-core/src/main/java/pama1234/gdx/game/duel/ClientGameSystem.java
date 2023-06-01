@@ -2,6 +2,7 @@ package pama1234.gdx.game.duel;
 
 import pama1234.app.game.server.duel.ServerGameSystem;
 import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.player.DrawBowPlayerActorState;
 import pama1234.app.game.server.duel.util.player.PlayerEngine;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.gdx.game.duel.util.ai.mech.ComputerPlayerEngine;
@@ -13,7 +14,6 @@ import pama1234.gdx.game.duel.util.graphics.ParticleBuilder;
 import pama1234.gdx.game.duel.util.graphics.ParticleSet;
 import pama1234.gdx.game.duel.util.player.AndroidHumanPlayerEngine;
 import pama1234.gdx.game.duel.util.player.DamagedPlayerActorState;
-import pama1234.gdx.game.duel.util.player.DrawBowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawLongbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawShortbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.HumanPlayerEngine;

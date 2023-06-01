@@ -2,7 +2,7 @@ package pama1234.gdx.game.duel.util.arrow;
 
 import pama1234.gdx.game.duel.Duel;
 
-public final class LongbowArrowShaft extends LongbowArrowComponent{
+public final class LongbowArrowShaft extends ClientLongbowArrowComponent{
   public LongbowArrowShaft(Duel duel) {
     super(duel);
   }

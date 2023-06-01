@@ -1,28 +1,15 @@
 package pama1234.gdx.game.duel.util.arrow;
 
-import pama1234.app.game.server.duel.util.arrow.AbstractArrowActor;
+import pama1234.app.game.server.duel.util.arrow.ServerShortbowArrow;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
-public class ShortbowArrow extends AbstractArrowActor{
+public class ClientShortbowArrow extends ServerShortbowArrow{
   public final Duel duel;
-  public final float terminalSpeed;
-  public final float halfHeadLength=8;
-  public final float halfHeadWidth=4;
-  public final float halfFeatherWidth=4;
-  public final float featherLength=8;
-  public ShortbowArrow(Duel duel) {
-    super(8,20);
+  public ClientShortbowArrow(Duel duel) {
+    super();
     this.duel=duel;
-    terminalSpeed=8;
-  }
-  @Override
-  public void update() {
-    xVelocity=speed*UtilMath.cos(directionAngle);
-    yVelocity=speed*UtilMath.sin(directionAngle);
-    super.update();
-    speed+=(terminalSpeed-speed)*0.1f;
   }
   @Override
   public void act() {
@@ -63,9 +50,5 @@ public class ShortbowArrow extends AbstractArrowActor{
     duel.line(-halfLength+8,0,-halfLength-featherLength+8,-halfFeatherWidth);
     duel.line(-halfLength+8,0,-halfLength-featherLength+8,+halfFeatherWidth);
     duel.popMatrix();
-  }
-  @Override
-  public boolean isLethal() {
-    return false;
   }
 }

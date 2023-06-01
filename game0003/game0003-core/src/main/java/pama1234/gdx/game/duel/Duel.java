@@ -12,7 +12,7 @@ import pama1234.gdx.game.duel.util.ai.nnet.FisheyeVision;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter.NetworkGroupParam;
 import pama1234.gdx.game.duel.util.graphics.DemoInfo;
-import pama1234.gdx.game.duel.util.input.InputData;
+import pama1234.gdx.game.duel.util.input.ClientInputData;
 import pama1234.gdx.game.duel.util.input.UiGenerator;
 import pama1234.gdx.game.ui.util.TextButton;
 import pama1234.gdx.util.app.ScreenCore2D;
@@ -52,7 +52,7 @@ public class Duel extends ScreenCore2D{
   // public static LocalBundleCenter bundleCenter;
   //---
   public TextButton<?>[] buttons;
-  public InputData currentInput;
+  public ClientInputData currentInput;
   public ClientGameSystem system;
   public boolean paused;
   public int canvasSideLength=CANVAS_SIZE;
@@ -95,7 +95,7 @@ public class Duel extends ScreenCore2D{
       buttons=UiGenerator.genButtons_0010(this);
       for(TextButton<?> e:buttons) centerScreen.add.add(e);
     }
-    currentInput=new InputData();
+    currentInput=new ClientInputData();
     //---
     if(config.mode==neat) {
       param=new NetworkGroupParam(32);

@@ -5,9 +5,9 @@ import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
-public abstract class LongbowArrowComponent extends AbstractArrowActor{
+public abstract class ClientLongbowArrowComponent extends AbstractArrowActor{
   public final Duel duel;
-  public LongbowArrowComponent(Duel duel) {
+  public ClientLongbowArrowComponent(Duel duel) {
     super(16,16);
     this.duel=duel;
   }
