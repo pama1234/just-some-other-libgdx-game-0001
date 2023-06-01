@@ -1,7 +1,7 @@
 package pama1234.gdx.game.duel;
 
+import pama1234.game.app.server.duel.ServerGameSystem;
 import pama1234.game.app.server.duel.util.Const;
-import pama1234.game.app.server.duel.util.actor.ActorGroup;
 import pama1234.game.app.server.duel.util.player.PlayerEngine;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.gdx.game.duel.util.ai.mech.ComputerPlayerEngine;
@@ -18,28 +18,24 @@ import pama1234.gdx.game.duel.util.player.DrawLongbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawShortbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.HumanPlayerEngine;
 import pama1234.gdx.game.duel.util.player.MovePlayerActorState;
-import pama1234.gdx.game.duel.util.state.GameSystemState;
+import pama1234.gdx.game.duel.util.state.ClientGameSystemState;
 import pama1234.gdx.game.duel.util.state.StartGameState;
 import pama1234.math.UtilMath;
 
-public final class GameSystem{
-  public static final int start=1,play=2,result=3;
-  //---
+public final class ClientGameSystem extends ServerGameSystem{
   public final Duel duel;
-  public final ActorGroup myGroup,otherGroup;
   public final ParticleSet commonParticleSet;
-  public GameSystemState currentState;
+  public ClientGameSystemState currentState;
   public int stateIndex;
   public float screenShakeValue;
   public final DamagedPlayerActorState damagedState;
   public final GameBackground currentBackground;
   public final boolean demoPlay;
   public boolean showsInstructionWindow;
-  public GameSystem(Duel duel,boolean demo,boolean instruction) {
+  public ClientGameSystem(Duel duel,boolean demo,boolean instruction) {
+    super();
     this.duel=duel;
     // prepare ActorGroup
-    myGroup=new ActorGroup(0);
-    otherGroup=new ActorGroup(1);
     myGroup.enemyGroup=otherGroup;
     otherGroup.enemyGroup=myGroup;
     // prepare PlayerActorState
@@ -84,7 +80,7 @@ public final class GameSystem{
       return new ComputerLifeEngine((side?duel.player_a:duel.player_b).graphics,duel.neatCenter.getNext(),side);
     }else return new ComputerPlayerEngine(duel::random);
   }
-  public GameSystem(Duel duel) {
+  public ClientGameSystem(Duel duel) {
     this(duel,false,false);
   }
   public void run() {
@@ -94,7 +90,7 @@ public final class GameSystem{
   public void update() {
     if(demoPlay) {
       if(duel.currentInput.isZPressed) {
-        duel.system=new GameSystem(duel); // stop demo and start game
+        duel.system=new ClientGameSystem(duel); // stop demo and start game
         return;
       }
     }
@@ -129,7 +125,7 @@ public final class GameSystem{
       duel.system.commonParticleSet.particleList.add(newParticle);
     }
   }
-  public void currentState(GameSystemState currentState) {
+  public void currentState(ClientGameSystemState currentState) {
     this.currentState=currentState;
     duel.stateChangeEvent(this,stateIndex);
   }

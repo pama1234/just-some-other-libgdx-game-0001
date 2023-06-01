@@ -2,19 +2,19 @@ package pama1234.gdx.game.duel.util.state;
 
 import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.GameSystem;
+import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.TextUtil;
 import pama1234.gdx.game.duel.TextUtil.TextWithWidth;
 import pama1234.math.UtilMath;
 
-public final class GameResultState extends GameSystemState{
+public final class GameResultState extends ClientGameSystemState{
   public final TextWithWidth resultMessage;
   public final int durationFrameCount=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   //---
   public int winGroupe;
-  public GameResultState(Duel duel,GameSystem system,int winGroupe,TextWithWidth msg) {
+  public GameResultState(Duel duel,ClientGameSystem system,int winGroupe,TextWithWidth msg) {
     super(duel,system);
-    system.stateIndex=GameSystem.result;
+    system.stateIndex=ClientGameSystem.result;
     this.winGroupe=winGroupe;
     resultMessage=msg;
   }

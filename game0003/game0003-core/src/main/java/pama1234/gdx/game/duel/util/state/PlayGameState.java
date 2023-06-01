@@ -7,15 +7,15 @@ import pama1234.game.app.server.duel.util.actor.ActorGroup;
 import pama1234.game.app.server.duel.util.actor.NullPlayerActor;
 import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.GameSystem;
+import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.TextUtil;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.math.UtilMath;
 
-public final class PlayGameState extends GameSystemState{
-  public PlayGameState(Duel duel,GameSystem system) {
+public final class PlayGameState extends ClientGameSystemState{
+  public PlayGameState(Duel duel,ClientGameSystem system) {
     super(duel,system);
-    system.stateIndex=GameSystem.play;
+    system.stateIndex=ClientGameSystem.play;
   }
   public int messageDurationFrameCount=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   @Override

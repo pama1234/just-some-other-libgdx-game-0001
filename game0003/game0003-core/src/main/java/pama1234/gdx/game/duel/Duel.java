@@ -53,7 +53,7 @@ public class Duel extends ScreenCore2D{
   //---
   public TextButton<?>[] buttons;
   public InputData currentInput;
-  public GameSystem system;
+  public ClientGameSystem system;
   public boolean paused;
   public int canvasSideLength=CANVAS_SIZE;
   public TouchInfo moveCtrl;
@@ -140,7 +140,7 @@ public class Duel extends ScreenCore2D{
     configFile.writeString(localization.yaml.dumpAsMap(config),false);
   }
   public void newGame(boolean demo,boolean instruction) {
-    system=new GameSystem(this,demo,instruction);
+    system=new ClientGameSystem(this,demo,instruction);
   }
   @Override
   public void display() {
@@ -214,7 +214,7 @@ public class Duel extends ScreenCore2D{
       system.update();
       //---
       if(config.mode==neat) {
-        if(system.stateIndex==GameSystem.play) {
+        if(system.stateIndex==ClientGameSystem.play) {
           time++;
           system.myGroup.player.engine.setScore(1,system.currentState.getScore(system.myGroup.id));
           system.otherGroup.player.engine.setScore(1,system.currentState.getScore(system.otherGroup.id));
@@ -274,9 +274,9 @@ public class Duel extends ScreenCore2D{
       magCache=0;
     }
   }
-  public void stateChangeEvent(GameSystem system,int stateIndex) {
-    if(system.stateIndex==GameSystem.play) time=0;
-    else if(system.stateIndex==GameSystem.result) {
+  public void stateChangeEvent(ClientGameSystem system,int stateIndex) {
+    if(system.stateIndex==ClientGameSystem.play) time=0;
+    else if(system.stateIndex==ClientGameSystem.result) {
       system.myGroup.player.engine.setScore(0,system.currentState.getScore(system.myGroup.id));
       system.otherGroup.player.engine.setScore(0,system.currentState.getScore(system.otherGroup.id));
     }

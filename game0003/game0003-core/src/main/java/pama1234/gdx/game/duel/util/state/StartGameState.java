@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 
 import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.GameSystem;
+import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
-public final class StartGameState extends GameSystemState{
-  public StartGameState(Duel duel,GameSystem system) {
+public final class StartGameState extends ClientGameSystemState{
+  public StartGameState(Duel duel,ClientGameSystem system) {
     super(duel,system);
-    system.stateIndex=GameSystem.start;
+    system.stateIndex=ClientGameSystem.start;
   }
   public final int frameCountPerNumber=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   public final float ringSize=200;
