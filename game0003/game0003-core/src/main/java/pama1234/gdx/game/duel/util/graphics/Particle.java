@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 
 import pama1234.game.app.server.duel.util.Body;
 import pama1234.game.app.server.duel.util.Const;
+import pama1234.game.app.server.duel.util.ObjectPool;
+import pama1234.game.app.server.duel.util.Poolable;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.util.ObjectPool;
-import pama1234.gdx.game.duel.util.Poolable;
 import pama1234.math.Tools;
 import pama1234.math.UtilMath;
 

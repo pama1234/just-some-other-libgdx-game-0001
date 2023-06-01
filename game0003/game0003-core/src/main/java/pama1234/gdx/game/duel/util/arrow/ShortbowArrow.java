@@ -1,4 +1,4 @@
-package pama1234.gdx.game.duel.util.actor;
+package pama1234.gdx.game.duel.util.arrow;
 
 import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.Duel;

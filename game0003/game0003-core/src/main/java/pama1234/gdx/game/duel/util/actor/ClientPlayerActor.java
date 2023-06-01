@@ -8,12 +8,7 @@ import pama1234.gdx.game.duel.Duel;
 
 public final class ClientPlayerActor extends ServerPlayerActor{
   public final Duel duel;
-  public final float bodySize=32;
-  public final float halfBodySize=bodySize*0.5f;
   public final Color fillColor;
-  public float aimAngle;
-  public int chargedFrameCount;
-  public int damageRemainingFrameCount;
   public ClientPlayerActor(Duel duel,PlayerEngine engine,Color color) {
     super(engine);
     this.duel=duel;

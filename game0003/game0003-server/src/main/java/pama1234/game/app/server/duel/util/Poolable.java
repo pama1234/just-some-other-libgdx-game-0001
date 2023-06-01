@@ -1,4 +1,4 @@
-package pama1234.gdx.game.duel.util;
+package pama1234.game.app.server.duel.util;
 
 public interface Poolable<T extends Poolable<?>>{
   public boolean isAllocated();

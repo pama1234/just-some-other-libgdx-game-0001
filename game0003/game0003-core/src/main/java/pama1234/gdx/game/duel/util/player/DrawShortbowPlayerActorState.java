@@ -5,7 +5,7 @@ import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
 import pama1234.game.app.server.duel.util.player.PlayerActorState;
 import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.util.actor.ShortbowArrow;
+import pama1234.gdx.game.duel.util.arrow.ShortbowArrow;
 import pama1234.math.UtilMath;
 
 public final class DrawShortbowPlayerActorState extends DrawBowPlayerActorState{
