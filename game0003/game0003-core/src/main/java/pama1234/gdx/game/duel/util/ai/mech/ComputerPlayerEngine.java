@@ -1,8 +1,8 @@
 package pama1234.gdx.game.duel.util.ai.mech;
 
+import pama1234.game.app.server.duel.util.player.PlayerEngine;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.GetRandom;
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.player.PlayerEngine;
 
 public final class ComputerPlayerEngine extends PlayerEngine{
   public GetRandom rng;
@@ -25,7 +25,7 @@ public final class ComputerPlayerEngine extends PlayerEngine{
     currentPlan=move;
   }
   @Override
-  public void run(PlayerActor player) {
+  public void run(ServerPlayerActor player) {
     currentPlan.execute(player,inputDevice);
     if(time%planUpdateFrameCount==0) currentPlan=currentPlan.nextPlan(player);
     time++;

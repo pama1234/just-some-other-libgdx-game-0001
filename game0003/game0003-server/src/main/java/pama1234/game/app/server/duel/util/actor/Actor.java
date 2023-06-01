@@ -1,6 +1,6 @@
-package pama1234.gdx.game.duel.util.actor;
+package pama1234.game.app.server.duel.util.actor;
 
-import pama1234.gdx.game.duel.util.Body;
+import pama1234.game.app.server.duel.util.Body;
 
 public abstract class Actor extends Body{
   public ActorGroup group;

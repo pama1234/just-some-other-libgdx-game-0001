@@ -1,11 +1,11 @@
 package pama1234.gdx.game.duel.util.ai.mech;
 
-import pama1234.gdx.game.duel.Duel;
+import pama1234.game.app.server.duel.util.Const;
+import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
+import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.GetRandom;
-import pama1234.gdx.game.duel.util.actor.AbstractPlayerActor;
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.arrow.AbstractArrowActor;
-import pama1234.gdx.game.duel.util.input.AbstractInputDevice;
 import pama1234.math.UtilMath;
 
 public abstract class DefaultPlayerPlan extends PlayerPlan{
@@ -17,12 +17,12 @@ public abstract class DefaultPlayerPlan extends PlayerPlan{
   public int horizontalMove,verticalMove;
   public boolean shoot;
   @Override
-  public void execute(PlayerActor player,AbstractInputDevice input) {
+  public void execute(ServerPlayerActor player,AbstractInputDevice input) {
     input.operateMoveButton(horizontalMove,verticalMove);
     input.operateLongShotButton(false);
   }
   @Override
-  public PlayerPlan nextPlan(PlayerActor player) {
+  public PlayerPlan nextPlan(ServerPlayerActor player) {
     final AbstractPlayerActor enemy=player.group.enemyGroup.player;
     // Draw longbow if enemy is damaged
     if(enemy.state.isDamaged()) {
@@ -59,15 +59,15 @@ public abstract class DefaultPlayerPlan extends PlayerPlan{
     if(rng.random(1)<0.2f) return movePlan;
     else return jabPlan;
   }
-  public void setMoveDirection(PlayerActor player,AbstractPlayerActor enemy) {
+  public void setMoveDirection(ServerPlayerActor player,AbstractPlayerActor enemy) {
     float targetX,targetY;
-    if(enemy.xPosition>Duel.CANVAS_SIZE*0.5f) targetX=rng.random(0,Duel.CANVAS_SIZE*0.5f);
-    else targetX=rng.random(Duel.CANVAS_SIZE*0.5f,Duel.CANVAS_SIZE);
-    if(enemy.yPosition>Duel.CANVAS_SIZE*0.5f) targetY=rng.random(0,Duel.CANVAS_SIZE*0.5f);
-    else targetY=rng.random(Duel.CANVAS_SIZE*0.5f,Duel.CANVAS_SIZE);
+    if(enemy.xPosition>Const.CANVAS_SIZE*0.5f) targetX=rng.random(0,Const.CANVAS_SIZE*0.5f);
+    else targetX=rng.random(Const.CANVAS_SIZE*0.5f,Const.CANVAS_SIZE);
+    if(enemy.yPosition>Const.CANVAS_SIZE*0.5f) targetY=rng.random(0,Const.CANVAS_SIZE*0.5f);
+    else targetY=rng.random(Const.CANVAS_SIZE*0.5f,Const.CANVAS_SIZE);
     setMoveDirection(player,targetX,targetY,100);
   }
-  public void setMoveDirection(PlayerActor player,float targetX,float targetY,float allowance) {
+  public void setMoveDirection(ServerPlayerActor player,float targetX,float targetY,float allowance) {
     if(targetX>player.xPosition+allowance) horizontalMove=1;
     else if(targetX<player.xPosition-allowance) horizontalMove=-1;
     else horizontalMove=0;

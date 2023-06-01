@@ -2,6 +2,7 @@ package pama1234.gdx.game.duel.util.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 
+import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.math.UtilMath;
 
@@ -71,7 +72,7 @@ public final class ParticleBuilder{
     return this;
   }
   public ParticleBuilder lifespanSecond(float v) {
-    lifespan(UtilMath.floor(v*Duel.IDEAL_FRAME_RATE));
+    lifespan(UtilMath.floor(v*Const.IDEAL_FRAME_RATE));
     return this;
   }
   public Particle build() {

@@ -1,12 +1,13 @@
 package pama1234.gdx.game.duel.util.player;
 
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.player.PlayerActorState;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 
 public final class MovePlayerActorState extends PlayerActorState{
   public PlayerActorState drawShortbowState,drawLongbowState;
   @Override
-  public void act(PlayerActor parentActor) {
+  public void act(ServerPlayerActor parentActor) {
     final AbstractInputDevice input=parentActor.engine.inputDevice;
     parentActor.addVelocity(input.horizontalMove,input.verticalMove);
     if(input.shotButtonPressed) {
@@ -21,9 +22,9 @@ public final class MovePlayerActorState extends PlayerActorState{
     }
   }
   @Override
-  public void displayEffect(PlayerActor parentActor) {}
+  public void displayEffect(ServerPlayerActor parentActor) {}
   @Override
-  public PlayerActorState entryState(PlayerActor parentActor) {
+  public PlayerActorState entryState(ServerPlayerActor parentActor) {
     return this;
   }
 }

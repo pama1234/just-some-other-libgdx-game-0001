@@ -2,8 +2,9 @@ package pama1234.gdx.game.duel.util.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 
+import pama1234.game.app.server.duel.util.Body;
+import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.util.Body;
 import pama1234.gdx.game.duel.util.ObjectPool;
 import pama1234.gdx.game.duel.util.Poolable;
 import pama1234.math.Tools;
@@ -76,7 +77,7 @@ public final class Particle extends Body implements Poolable<Particle>{
     if(properFrameCount>lifespanFrameCount) duel.system.commonParticleSet.removingParticleList.add(this);
     switch(particleTypeNumber) {
       case square:
-        rotationAngle+=1.5f*UtilMath.PI2/Duel.IDEAL_FRAME_RATE;
+        rotationAngle+=1.5f*UtilMath.PI2/Const.IDEAL_FRAME_RATE;
         break;
       default:
         break;

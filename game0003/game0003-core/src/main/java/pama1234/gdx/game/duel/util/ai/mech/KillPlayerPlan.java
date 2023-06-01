@@ -1,9 +1,9 @@
 package pama1234.gdx.game.duel.util.ai.mech;
 
+import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.GetRandom;
-import pama1234.gdx.game.duel.util.actor.AbstractPlayerActor;
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.input.AbstractInputDevice;
 import pama1234.math.UtilMath;
 
 public final class KillPlayerPlan extends PlayerPlan{
@@ -13,7 +13,7 @@ public final class KillPlayerPlan extends PlayerPlan{
     this.rng=rng;
   }
   @Override
-  public void execute(PlayerActor player,AbstractInputDevice input) {
+  public void execute(ServerPlayerActor player,AbstractInputDevice input) {
     int horizontalMove;
     final float relativeAngle=player.getAngle(player.group.enemyGroup.player)-player.aimAngle;
     if(UtilMath.abs(relativeAngle)<UtilMath.rad(1)) horizontalMove=0;
@@ -27,7 +27,7 @@ public final class KillPlayerPlan extends PlayerPlan{
     else input.operateLongShotButton(true);
   }
   @Override
-  public PlayerPlan nextPlan(PlayerActor player) {
+  public PlayerPlan nextPlan(ServerPlayerActor player) {
     final AbstractPlayerActor enemy=player.group.enemyGroup.player;
     if((UtilMath.abs(player.getAngle(player.group.enemyGroup.player)-player.aimAngle)>UtilMath.QUARTER_PI)||(player.getDistance(enemy)<400)||!player.engine.inputDevice.longShotButtonPressed) return movePlan;
     return this;

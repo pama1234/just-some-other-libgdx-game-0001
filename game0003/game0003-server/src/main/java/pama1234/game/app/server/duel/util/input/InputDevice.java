@@ -1,4 +1,4 @@
-package pama1234.gdx.game.duel.util.input;
+package pama1234.game.app.server.duel.util.input;
 
 public final class InputDevice extends AbstractInputDevice{
 }

@@ -1,14 +1,15 @@
 package pama1234.gdx.game.duel.util.state;
 
+import pama1234.game.app.server.duel.util.Const;
+import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.game.app.server.duel.util.actor.Actor;
+import pama1234.game.app.server.duel.util.actor.ActorGroup;
+import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.GameSystem;
 import pama1234.gdx.game.duel.TextUtil;
-import pama1234.gdx.game.duel.util.actor.AbstractPlayerActor;
-import pama1234.gdx.game.duel.util.actor.Actor;
-import pama1234.gdx.game.duel.util.actor.ActorGroup;
 import pama1234.gdx.game.duel.util.actor.NullPlayerActor;
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.arrow.AbstractArrowActor;
+import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.math.UtilMath;
 
 public final class PlayGameState extends GameSystemState{
@@ -16,7 +17,7 @@ public final class PlayGameState extends GameSystemState{
     super(duel,system);
     system.stateIndex=GameSystem.play;
   }
-  public int messageDurationFrameCount=UtilMath.floor(Duel.IDEAL_FRAME_RATE);
+  public int messageDurationFrameCount=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   @Override
   public void updateSystem() {
     system.myGroup.update();
@@ -65,7 +66,7 @@ public final class PlayGameState extends GameSystemState{
         AbstractPlayerActor enemyPlayer=otherGroup.player;
         if(!eachMyArrow.isCollided(enemyPlayer)) continue;
         if(eachMyArrow.isLethal()) killPlayer(otherGroup.player);
-        else thrustPlayerActor(eachMyArrow,(PlayerActor)enemyPlayer);
+        else thrustPlayerActor(eachMyArrow,(ClientPlayerActor)enemyPlayer);
         breakArrow(eachMyArrow,myGroup);
       }
     }
@@ -73,7 +74,7 @@ public final class PlayGameState extends GameSystemState{
       for(AbstractArrowActor eachEnemyArrow:otherGroup.arrowList) {
         if(!eachEnemyArrow.isCollided(myGroup.player)) continue;
         if(eachEnemyArrow.isLethal()) killPlayer(myGroup.player);
-        else thrustPlayerActor(eachEnemyArrow,(PlayerActor)myGroup.player);
+        else thrustPlayerActor(eachEnemyArrow,(ClientPlayerActor)myGroup.player);
         breakArrow(eachEnemyArrow,otherGroup);
       }
     }
@@ -88,7 +89,7 @@ public final class PlayGameState extends GameSystemState{
     duel.system.addSquareParticles(arrow.xPosition,arrow.yPosition,10,7,1,5,1);
     group.removingArrowList.add(arrow);
   }
-  public void thrustPlayerActor(Actor referenceActor,PlayerActor targetPlayerActor) {
+  public void thrustPlayerActor(Actor referenceActor,ClientPlayerActor targetPlayerActor) {
     final float relativeAngle=UtilMath.atan2(targetPlayerActor.yPosition-referenceActor.yPosition,targetPlayerActor.xPosition-referenceActor.xPosition);
     final float thrustAngle=relativeAngle+duel.random(-0.5f*UtilMath.HALF_PI,0.5f*UtilMath.HALF_PI);
     targetPlayerActor.xVelocity+=20*UtilMath.cos(thrustAngle);

@@ -1,5 +1,6 @@
 package pama1234.gdx.game.duel;
 
+import static pama1234.game.app.server.duel.util.Const.CANVAS_SIZE;
 import static pama1234.gdx.game.duel.Config.neat;
 
 import com.badlogic.gdx.Gdx;
@@ -46,8 +47,6 @@ import pama1234.util.localization.Localization;
  * The font "Unifont" https://unifoundry.com/unifont/ is part of the GNU Project.
  */
 public class Duel extends ScreenCore2D{
-  public static final float IDEAL_FRAME_RATE=60;
-  public static final int CANVAS_SIZE=640;
   //---
   public static final Localization localization=new Localization();
   // public static LocalBundleCenter bundleCenter;
@@ -170,13 +169,13 @@ public class Duel extends ScreenCore2D{
       player_b.render();
       //---
       cartesianShader.bind();
-      cartesianShader.setUniformf("u_dist",player_a.camX/Duel.CANVAS_SIZE,player_a.camY/Duel.CANVAS_SIZE);
+      cartesianShader.setUniformf("u_dist",player_a.camX/CANVAS_SIZE,player_a.camY/CANVAS_SIZE);
       image(player_a.graphics.texture,-656,0,CANVAS_SIZE,CANVAS_SIZE,cartesianShader);
       //---
       image(graphics.texture,0,0,CANVAS_SIZE,CANVAS_SIZE);
       //---
       cartesianShader.bind();
-      cartesianShader.setUniformf("u_dist",player_b.camX/Duel.CANVAS_SIZE,player_b.camY/Duel.CANVAS_SIZE);
+      cartesianShader.setUniformf("u_dist",player_b.camX/CANVAS_SIZE,player_b.camY/CANVAS_SIZE);
       image(player_b.graphics.texture,656,0,CANVAS_SIZE,CANVAS_SIZE,cartesianShader);
       //---
       image(player_a.graphics.texture,-656,-656,CANVAS_SIZE,CANVAS_SIZE);

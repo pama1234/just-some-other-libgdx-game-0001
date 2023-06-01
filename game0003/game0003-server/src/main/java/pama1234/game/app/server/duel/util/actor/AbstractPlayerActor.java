@@ -1,7 +1,7 @@
-package pama1234.gdx.game.duel.util.actor;
+package pama1234.game.app.server.duel.util.actor;
 
-import pama1234.gdx.game.duel.util.player.PlayerActorState;
-import pama1234.gdx.game.duel.util.player.PlayerEngine;
+import pama1234.game.app.server.duel.util.player.PlayerActorState;
+import pama1234.game.app.server.duel.util.player.PlayerEngine;
 
 public abstract class AbstractPlayerActor extends Actor{
   public final PlayerEngine engine;

@@ -1,12 +1,15 @@
 package pama1234.gdx.game.duel.util.arrow;
 
+import pama1234.game.app.server.duel.util.arrow.AbstractArrowActor;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
 public abstract class LongbowArrowComponent extends AbstractArrowActor{
+  public final Duel duel;
   public LongbowArrowComponent(Duel duel) {
-    super(duel,16,16);
+    super(16,16);
+    this.duel=duel;
   }
   @Override
   public void act() {

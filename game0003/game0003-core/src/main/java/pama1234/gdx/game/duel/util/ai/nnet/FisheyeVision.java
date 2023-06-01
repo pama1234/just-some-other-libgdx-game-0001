@@ -3,8 +3,9 @@ package pama1234.gdx.game.duel.util.ai.nnet;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
+import pama1234.game.app.server.duel.util.Const;
+import pama1234.game.app.server.duel.util.actor.AbstractPlayerActor;
 import pama1234.gdx.game.duel.Duel;
-import pama1234.gdx.game.duel.util.actor.AbstractPlayerActor;
 import pama1234.gdx.util.element.Graphics;
 
 public class FisheyeVision{
@@ -27,7 +28,7 @@ public class FisheyeVision{
       camX=player.xPosition;
       camY=player.yPosition;
     }
-    shader.setUniformf("u_dist",camX/Duel.CANVAS_SIZE,1-camY/Duel.CANVAS_SIZE);
+    shader.setUniformf("u_dist",camX/Const.CANVAS_SIZE,1-camY/Const.CANVAS_SIZE);
   }
   public void render() {
     graphics.begin();

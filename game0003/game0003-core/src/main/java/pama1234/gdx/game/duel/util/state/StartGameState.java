@@ -2,6 +2,7 @@ package pama1234.gdx.game.duel.util.state;
 
 import com.badlogic.gdx.graphics.Color;
 
+import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.GameSystem;
 import pama1234.gdx.game.duel.util.graphics.Particle;
@@ -12,7 +13,7 @@ public final class StartGameState extends GameSystemState{
     super(duel,system);
     system.stateIndex=GameSystem.start;
   }
-  public final int frameCountPerNumber=UtilMath.floor(Duel.IDEAL_FRAME_RATE);
+  public final int frameCountPerNumber=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   public final float ringSize=200;
   public final Color ringColor=Duel.color(0);
   public final float ringStrokeWeight=5.0f;
@@ -26,7 +27,7 @@ public final class StartGameState extends GameSystemState{
   public void displaySystem() {
     system.myGroup.displayPlayer();
     system.otherGroup.displayPlayer();
-    duel.translate(Duel.CANVAS_SIZE*0.5f,Duel.CANVAS_SIZE*0.5f);
+    duel.translate(Const.CANVAS_SIZE*0.5f,Const.CANVAS_SIZE*0.5f);
     drawRing();
   }
   @Override
@@ -53,7 +54,7 @@ public final class StartGameState extends GameSystemState{
     if(properFrameCount>=frameCountPerNumber*3) {
       final Particle newParticle=system.commonParticleSet.builder
         .type(Particle.ring)
-        .position(Duel.CANVAS_SIZE*0.5f,Duel.CANVAS_SIZE*0.5f)
+        .position(Const.CANVAS_SIZE*0.5f,Const.CANVAS_SIZE*0.5f)
         .polarVelocity(0,0)
         .particleSize(ringSize)
         .particleColor(ringColor)

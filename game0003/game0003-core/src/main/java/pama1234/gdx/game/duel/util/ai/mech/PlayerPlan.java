@@ -1,9 +1,9 @@
 package pama1234.gdx.game.duel.util.ai.mech;
 
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.input.AbstractInputDevice;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 
 public abstract class PlayerPlan{
-  public abstract void execute(PlayerActor player,AbstractInputDevice input);
-  public abstract PlayerPlan nextPlan(PlayerActor player);
+  public abstract void execute(ServerPlayerActor player,AbstractInputDevice input);
+  public abstract PlayerPlan nextPlan(ServerPlayerActor player);
 }

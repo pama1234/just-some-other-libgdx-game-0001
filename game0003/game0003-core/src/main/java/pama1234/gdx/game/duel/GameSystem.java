@@ -1,7 +1,9 @@
 package pama1234.gdx.game.duel;
 
-import pama1234.gdx.game.duel.util.actor.ActorGroup;
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
+import pama1234.game.app.server.duel.util.Const;
+import pama1234.game.app.server.duel.util.actor.ActorGroup;
+import pama1234.game.app.server.duel.util.player.PlayerEngine;
+import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.gdx.game.duel.util.ai.mech.ComputerPlayerEngine;
 import pama1234.gdx.game.duel.util.ai.nnet.ComputerLifeEngine;
 import pama1234.gdx.game.duel.util.graphics.DemoInfo;
@@ -16,7 +18,6 @@ import pama1234.gdx.game.duel.util.player.DrawLongbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawShortbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.HumanPlayerEngine;
 import pama1234.gdx.game.duel.util.player.MovePlayerActorState;
-import pama1234.gdx.game.duel.util.player.PlayerEngine;
 import pama1234.gdx.game.duel.util.state.GameSystemState;
 import pama1234.gdx.game.duel.util.state.StartGameState;
 import pama1234.math.UtilMath;
@@ -58,14 +59,14 @@ public final class GameSystem{
       if(duel.isAndroid) myEngine=new AndroidHumanPlayerEngine(duel.currentInput);
       else myEngine=new HumanPlayerEngine(duel.currentInput);
     }
-    PlayerActor myPlayer=new PlayerActor(duel,myEngine,duel.config.mode==Config.neat?Duel.color(0):Duel.color(255));
-    myPlayer.xPosition=Duel.CANVAS_SIZE*0.5f;
-    myPlayer.yPosition=Duel.CANVAS_SIZE-100;
+    ClientPlayerActor myPlayer=new ClientPlayerActor(duel,myEngine,duel.config.mode==Config.neat?Duel.color(0):Duel.color(255));
+    myPlayer.xPosition=Const.CANVAS_SIZE*0.5f;
+    myPlayer.yPosition=Const.CANVAS_SIZE-100;
     myPlayer.state=moveState;
     myGroup.setPlayer(myPlayer);
     PlayerEngine otherEngine=createComputerEngine(false);
-    PlayerActor otherPlayer=new PlayerActor(duel,otherEngine,Duel.color(0));
-    otherPlayer.xPosition=Duel.CANVAS_SIZE*0.5f;
+    ClientPlayerActor otherPlayer=new ClientPlayerActor(duel,otherEngine,Duel.color(0));
+    otherPlayer.xPosition=Const.CANVAS_SIZE*0.5f;
     otherPlayer.yPosition=100;
     otherPlayer.state=moveState;
     otherGroup.setPlayer(otherPlayer);
@@ -104,7 +105,7 @@ public final class GameSystem{
     duel.pushMatrix();
     if(screenShakeValue>0) {
       duel.translate(duel.random(screenShakeValue,screenShakeValue),duel.random(-screenShakeValue,screenShakeValue));
-      screenShakeValue-=50f/Duel.IDEAL_FRAME_RATE;
+      screenShakeValue-=50f/Const.IDEAL_FRAME_RATE;
     }
     currentBackground.display();
     currentState.display();

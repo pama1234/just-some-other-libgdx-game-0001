@@ -2,8 +2,8 @@ package pama1234.gdx.game.duel.util.ai.nnet;
 
 import com.badlogic.gdx.graphics.Pixmap;
 
-import pama1234.gdx.game.duel.util.actor.PlayerActor;
-import pama1234.gdx.game.duel.util.player.PlayerEngine;
+import pama1234.game.app.server.duel.util.player.PlayerEngine;
+import pama1234.game.app.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.util.element.Graphics;
 import pama1234.math.UtilMath;
 
@@ -21,7 +21,7 @@ public class ComputerLifeEngine extends PlayerEngine{
     this.side=side;
   }
   @Override
-  public void run(PlayerActor player) {
+  public void run(ServerPlayerActor player) {
     prepareInput();
     networks.execute();
     completeCharge=player.state.hasCompletedLongBowCharge(player);

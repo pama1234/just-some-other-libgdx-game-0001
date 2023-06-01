@@ -1,5 +1,6 @@
 package pama1234.gdx.game.duel.util.state;
 
+import pama1234.game.app.server.duel.util.Const;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.GameSystem;
 import pama1234.gdx.game.duel.TextUtil;
@@ -8,7 +9,7 @@ import pama1234.math.UtilMath;
 
 public final class GameResultState extends GameSystemState{
   public final TextWithWidth resultMessage;
-  public final int durationFrameCount=UtilMath.floor(Duel.IDEAL_FRAME_RATE);
+  public final int durationFrameCount=UtilMath.floor(Const.IDEAL_FRAME_RATE);
   //---
   public int winGroupe;
   public GameResultState(Duel duel,GameSystem system,int winGroupe,TextWithWidth msg) {
