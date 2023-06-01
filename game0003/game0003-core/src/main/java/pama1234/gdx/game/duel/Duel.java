@@ -1,7 +1,10 @@
 package pama1234.gdx.game.duel;
 
+import static pama1234.gdx.game.duel.Config.neat;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import pama1234.gdx.game.duel.util.ai.nnet.FisheyeVision;
@@ -17,6 +20,7 @@ import pama1234.gdx.util.info.MouseInfo;
 import pama1234.gdx.util.info.TouchInfo;
 import pama1234.math.Tools;
 import pama1234.math.UtilMath;
+import pama1234.util.localization.Localization;
 
 /**
  * Title: Duel
@@ -44,6 +48,10 @@ import pama1234.math.UtilMath;
 public class Duel extends ScreenCore2D{
   public static final float IDEAL_FRAME_RATE=60;
   public static final int CANVAS_SIZE=640;
+  //---
+  public static final Localization localization=new Localization();
+  // public static LocalBundleCenter bundleCenter;
+  //---
   public TextButton<?>[] buttons;
   public InputData currentInput;
   public GameSystem system;
@@ -57,9 +65,7 @@ public class Duel extends ScreenCore2D{
   public float dxCache,dyCache;
   public float strokeUnit;
   //---
-  public static final int game=0,neat=1;
-  public int mode=isAndroid?game:neat;
-  // public int mode=game;
+  public Config config;
   public Graphics graphics;
   //---
   public NeatCenter neatCenter;
@@ -71,6 +77,19 @@ public class Duel extends ScreenCore2D{
   public int timeLimitConst=60*10;
   public int time,timeLimit=timeLimitConst;
   @Override
+  public void init() {
+    FileHandle configFile=Gdx.files.local("data/config.yaml");
+    if(configFile.exists()) {
+      // bundleCenter=new LocalBundleCenter(localization.yaml.load(
+      //   configFile.readString("UTF-8")));
+      config=localization.yaml.loadAs(configFile.readString("UTF-8"),Config.class);
+    }else {
+      Gdx.files.local("data").mkdirs();
+      config=new Config().init(this);
+    }
+    super.init();
+  }
+  @Override
   public void setup() {
     TextUtil.used=TextUtil.gen_ch(this::textWidthNoScale);
     if(isAndroid) {
@@ -79,7 +98,7 @@ public class Duel extends ScreenCore2D{
     }
     currentInput=new InputData();
     //---
-    if(mode==neat) {
+    if(config.mode==neat) {
       param=new NetworkGroupParam(32);
       neatCenter=new NeatCenter(param);
       //---
@@ -105,7 +124,7 @@ public class Duel extends ScreenCore2D{
     //---
     cam.point.des.set(canvasSideLength/2f,canvasSideLength/2f);
     cam.point.pos.set(cam.point.des);
-    if(mode==neat) {
+    if(config.mode==neat) {
       cam2d.minScale=1/8f;
       cam2d.scaleUnit=1/8f;
       cam2d.scale.pos=cam2d.scale.des=(isAndroid?0.25f:1)*0.6f;
@@ -115,13 +134,19 @@ public class Duel extends ScreenCore2D{
       cam2d.activeScrollZoom=cam2d.activeTouchZoom=false;
     }
   }
+  @Override
+  public void dispose() {
+    super.dispose();
+    FileHandle configFile=Gdx.files.local("data/config.yaml");
+    configFile.writeString(localization.yaml.dumpAsMap(config),false);
+  }
   public void newGame(boolean demo,boolean instruction) {
     system=new GameSystem(this,demo,instruction);
   }
   @Override
   public void display() {
     system.displayScreen();
-    if(mode==neat) {
+    if(config.mode==neat) {
       textScale(UtilMath.ceil(UtilMath.max(1,pus/3f)));
       float ts=textScale()*textSize();
       text(Tools.getFloatString(time,5,0)+"ms -> "+Tools.getFloatString(timeLimit,5,0)+"ms",0,0);
@@ -136,7 +161,7 @@ public class Duel extends ScreenCore2D{
   @Override
   public void displayWithCam() {
     doStroke();
-    if(mode==neat) {
+    if(config.mode==neat) {
       graphics.begin();
       background(255);
       system.display();
@@ -189,7 +214,7 @@ public class Duel extends ScreenCore2D{
       }
       system.update();
       //---
-      if(mode==neat) {
+      if(config.mode==neat) {
         if(system.stateIndex==GameSystem.play) {
           time++;
           system.myGroup.player.engine.setScore(1,system.currentState.getScore(system.myGroup.id));
@@ -226,7 +251,7 @@ public class Duel extends ScreenCore2D{
   }
   @Override
   public void strokeWeight(float in) {
-    super.strokeWeight(mode==neat?in:in*strokeUnit);
+    super.strokeWeight(config.mode==neat?in:in*strokeUnit);
   }
   public void strokeWeightOriginal(float in) {
     super.strokeWeight(in);

@@ -7,6 +7,8 @@ eclipse.project.name = appName + '-game0003-server'
 dependencies {
   compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
 
+  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version"
+
   // api 'org.tensorflow:tensorflow-core-platform-gpu:0.5.0'
 }
 

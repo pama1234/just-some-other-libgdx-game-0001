@@ -58,7 +58,7 @@ public final class GameSystem{
       if(duel.isAndroid) myEngine=new AndroidHumanPlayerEngine(duel.currentInput);
       else myEngine=new HumanPlayerEngine(duel.currentInput);
     }
-    PlayerActor myPlayer=new PlayerActor(duel,myEngine,duel.mode==Duel.neat?Duel.color(0):Duel.color(255));
+    PlayerActor myPlayer=new PlayerActor(duel,myEngine,duel.config.mode==Config.neat?Duel.color(0):Duel.color(255));
     myPlayer.xPosition=Duel.CANVAS_SIZE*0.5f;
     myPlayer.yPosition=Duel.CANVAS_SIZE-100;
     myPlayer.state=moveState;
@@ -77,7 +77,7 @@ public final class GameSystem{
     showsInstructionWindow=instruction;
   }
   public PlayerEngine createComputerEngine(boolean side) {
-    if(duel.mode==Duel.neat) {
+    if(duel.config.mode==Config.neat) {
       // if(type) return new ComputerPlayerEngine(duel::random);
       // else return new ComputerLifeEngine((type?duel.player_a:duel.player_b).graphics,duel.neatCenter.getNext());
       return new ComputerLifeEngine((side?duel.player_a:duel.player_b).graphics,duel.neatCenter.getNext(),side);
