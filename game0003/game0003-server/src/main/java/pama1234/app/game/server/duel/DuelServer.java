@@ -4,7 +4,7 @@ import pama1234.app.game.server.duel.util.input.ServerInputData;
 import pama1234.util.UtilServer;
 
 public class DuelServer extends UtilServer{
-  public int frameCount;
+  // public int frameCount;
   public ServerInputData currentInput;
   public Config config;
   public ServerGameSystem system;
@@ -16,7 +16,7 @@ public class DuelServer extends UtilServer{
   }
   @Override
   public void update() {
-    frameCount++;
+    // frameCount++;
   }
   @Override
   public void dispose() {}
