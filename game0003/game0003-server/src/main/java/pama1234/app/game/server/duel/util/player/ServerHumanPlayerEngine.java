@@ -1,12 +1,10 @@
-package pama1234.gdx.game.duel.util.player;
+package pama1234.app.game.server.duel.util.player;
 
-import pama1234.app.game.server.duel.util.player.PlayerEngine;
-import pama1234.app.game.server.duel.util.player.ServerPlayerActor;
-import pama1234.gdx.game.duel.util.input.ClientInputData;
+import pama1234.app.game.server.duel.util.input.ServerInputData;
 
-public class HumanPlayerEngine extends PlayerEngine{
-  public final ClientInputData currentInput;
-  public HumanPlayerEngine(ClientInputData keyInput) {
+public class ServerHumanPlayerEngine extends PlayerEngine{
+  public final ServerInputData currentInput;
+  public ServerHumanPlayerEngine(ServerInputData keyInput) {
     currentInput=keyInput;
   }
   @Override

@@ -1,4 +1,4 @@
-package pama1234.gdx.game.duel;
+package pama1234.app.game.server.duel;
 
 @FunctionalInterface
 public interface GetRandom{

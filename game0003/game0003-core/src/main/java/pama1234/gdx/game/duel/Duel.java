@@ -1,13 +1,14 @@
 package pama1234.gdx.game.duel;
 
+import static pama1234.app.game.server.duel.Config.neat;
 import static pama1234.app.game.server.duel.util.Const.CANVAS_SIZE;
-import static pama1234.gdx.game.duel.Config.neat;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
+import pama1234.app.game.server.duel.Config;
 import pama1234.gdx.game.duel.util.ai.nnet.FisheyeVision;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter.NetworkGroupParam;
@@ -84,7 +85,7 @@ public class Duel extends ScreenCore2D{
       config=localization.yaml.loadAs(configFile.readString("UTF-8"),Config.class);
     }else {
       Gdx.files.local("data").mkdirs();
-      config=new Config().init(this);
+      config=new Config().init(isAndroid);
     }
     super.init();
   }

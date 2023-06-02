@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 
 import pama1234.app.game.server.duel.util.Const;
 import pama1234.app.game.server.duel.util.input.AbstractInputDevice;
-import pama1234.app.game.server.duel.util.player.DrawBowPlayerActorState;
 import pama1234.app.game.server.duel.util.player.PlayerActorState;
+import pama1234.app.game.server.duel.util.player.ServerDrawLongbowPlayerActorState;
 import pama1234.app.game.server.duel.util.player.ServerPlayerActor;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.game.duel.util.arrow.LongbowArrowHead;
@@ -13,14 +13,15 @@ import pama1234.gdx.game.duel.util.arrow.LongbowArrowShaft;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
-public final class DrawLongbowPlayerActorState extends DrawBowPlayerActorState{
+public final class ClientDrawLongbowPlayerActorState extends ServerDrawLongbowPlayerActorState{
   private final Duel duel;
   public final float unitAngleSpeed=0.1f*UtilMath.PI2/Const.IDEAL_FRAME_RATE;
   public final int chargeRequiredFrameCount=UtilMath.floor(0.5f*Const.IDEAL_FRAME_RATE);
   public final Color effectColor=Duel.color(192,64,64);
   public final float ringSize=80;
   public final float ringStrokeWeight=8;
-  public DrawLongbowPlayerActorState(Duel duel) {
+  public ClientDrawLongbowPlayerActorState(Duel duel) {
+    super(null);
     this.duel=duel;
   }
   @Override
@@ -37,14 +38,14 @@ public final class DrawLongbowPlayerActorState extends DrawBowPlayerActorState{
     final float arrowComponentInterval=24;
     final int arrowShaftNumber=5;
     for(int i=0;i<arrowShaftNumber;i++) {
-      LongbowArrowShaft newArrow=new LongbowArrowShaft(this.duel);
+      LongbowArrowShaft newArrow=new LongbowArrowShaft(duel);
       newArrow.xPosition=parentActor.xPosition+i*arrowComponentInterval*UtilMath.cos(parentActor.aimAngle);
       newArrow.yPosition=parentActor.yPosition+i*arrowComponentInterval*UtilMath.sin(parentActor.aimAngle);
       newArrow.rotationAngle=parentActor.aimAngle;
       newArrow.setVelocity(parentActor.aimAngle,64);
       parentActor.group.addArrow(newArrow);
     }
-    LongbowArrowHead newArrow=new LongbowArrowHead(this.duel);
+    LongbowArrowHead newArrow=new LongbowArrowHead(duel);
     newArrow.xPosition=parentActor.xPosition+arrowShaftNumber*arrowComponentInterval*UtilMath.cos(parentActor.aimAngle);
     newArrow.yPosition=parentActor.yPosition+arrowShaftNumber*arrowComponentInterval*UtilMath.sin(parentActor.aimAngle);
     newArrow.rotationAngle=parentActor.aimAngle;
@@ -77,7 +78,8 @@ public final class DrawLongbowPlayerActorState extends DrawBowPlayerActorState{
     duel.strokeWeight(ringStrokeWeight);
     duel.arc(0,0,ringSize/2f,0,360*UtilMath.min(1,(float)(parentActor.chargedFrameCount)/chargeRequiredFrameCount));
     duel.rotate(+UtilMath.HALF_PI);
-    parentActor.chargedFrameCount++;
+    // parentActor.chargedFrameCount++;
+    super.displayEffect(parentActor);
   }
   @Override
   public void act(ServerPlayerActor parentActor) {
@@ -93,21 +95,5 @@ public final class DrawLongbowPlayerActorState extends DrawBowPlayerActorState{
       .lifespanSecond(0.5f)
       .build();
     duel.system.commonParticleSet.particleList.add(newParticle);
-  }
-  @Override
-  public boolean isDrawingLongBow() {
-    return true;
-  }
-  @Override
-  public boolean hasCompletedLongBowCharge(ServerPlayerActor parentActor) {
-    return parentActor.chargedFrameCount>=chargeRequiredFrameCount;
-  }
-  @Override
-  public boolean buttonPressed(AbstractInputDevice input) {
-    return input.longShotButtonPressed;
-  }
-  @Override
-  public boolean triggerPulled(ServerPlayerActor parentActor) {
-    return !buttonPressed(parentActor.engine.inputDevice)&&hasCompletedLongBowCharge(parentActor);
   }
 }

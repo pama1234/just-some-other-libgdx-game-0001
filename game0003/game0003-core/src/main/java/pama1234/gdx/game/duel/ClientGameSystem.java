@@ -1,43 +1,46 @@
 package pama1234.gdx.game.duel;
 
+import pama1234.app.game.server.duel.Config;
 import pama1234.app.game.server.duel.ServerGameSystem;
 import pama1234.app.game.server.duel.util.Const;
+import pama1234.app.game.server.duel.util.ai.mesh.ComputerPlayerEngine;
 import pama1234.app.game.server.duel.util.player.DrawBowPlayerActorState;
+import pama1234.app.game.server.duel.util.player.MovePlayerActorState;
 import pama1234.app.game.server.duel.util.player.PlayerEngine;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
-import pama1234.gdx.game.duel.util.ai.mech.ComputerPlayerEngine;
 import pama1234.gdx.game.duel.util.ai.nnet.ComputerLifeEngine;
 import pama1234.gdx.game.duel.util.graphics.DemoInfo;
 import pama1234.gdx.game.duel.util.graphics.GameBackground;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.gdx.game.duel.util.graphics.ParticleBuilder;
 import pama1234.gdx.game.duel.util.graphics.ParticleSet;
-import pama1234.gdx.game.duel.util.player.AndroidHumanPlayerEngine;
+import pama1234.gdx.game.duel.util.player.ClientAndroidHumanPlayerEngine;
 import pama1234.gdx.game.duel.util.player.ClientDamagedPlayerActorState;
-import pama1234.gdx.game.duel.util.player.DrawLongbowPlayerActorState;
-import pama1234.gdx.game.duel.util.player.DrawShortbowPlayerActorState;
-import pama1234.gdx.game.duel.util.player.HumanPlayerEngine;
-import pama1234.gdx.game.duel.util.player.MovePlayerActorState;
+import pama1234.gdx.game.duel.util.player.ClientDrawLongbowPlayerActorState;
+import pama1234.gdx.game.duel.util.player.ClientDrawShortbowPlayerActorState;
+import pama1234.gdx.game.duel.util.player.ClientHumanPlayerEngine;
 import pama1234.gdx.game.duel.util.state.ClientGameSystemState;
-import pama1234.gdx.game.duel.util.state.StartGameState;
+import pama1234.gdx.game.duel.util.state.ClientStartGameState;
 import pama1234.math.UtilMath;
 
 public final class ClientGameSystem extends ServerGameSystem{
   public final Duel duel;
   public final ParticleSet commonParticleSet;
+  public float screenShakeValue;
   public ClientGameSystemState currentState;
+  public boolean showsInstructionWindow;
   public final ClientDamagedPlayerActorState damagedState;
   public final GameBackground currentBackground;
+  public ClientGameSystem(Duel duel) {
+    this(duel,false,false);
+  }
   public ClientGameSystem(Duel duel,boolean demo,boolean instruction) {
-    super(demo);
+    super(null,demo,false);
     this.duel=duel;
-    // prepare ActorGroup
-    myGroup.enemyGroup=otherGroup;
-    otherGroup.enemyGroup=myGroup;
     // prepare PlayerActorState
     final MovePlayerActorState moveState=new MovePlayerActorState();
-    final DrawBowPlayerActorState drawShortbowState=new DrawShortbowPlayerActorState(duel);
-    final DrawBowPlayerActorState drawLongbowState=new DrawLongbowPlayerActorState(duel);
+    final DrawBowPlayerActorState drawShortbowState=new ClientDrawShortbowPlayerActorState(duel);
+    final DrawBowPlayerActorState drawLongbowState=new ClientDrawLongbowPlayerActorState(duel);
     damagedState=new ClientDamagedPlayerActorState(duel);
     moveState.drawShortbowState=drawShortbowState;
     moveState.drawLongbowState=drawLongbowState;
@@ -48,8 +51,8 @@ public final class ClientGameSystem extends ServerGameSystem{
     PlayerEngine myEngine;
     if(demo) myEngine=createComputerEngine(true);
     else {
-      if(duel.isAndroid) myEngine=new AndroidHumanPlayerEngine(duel.currentInput);
-      else myEngine=new HumanPlayerEngine(duel.currentInput);
+      if(duel.isAndroid) myEngine=new ClientAndroidHumanPlayerEngine(duel.currentInput);
+      else myEngine=new ClientHumanPlayerEngine(duel.currentInput);
     }
     ClientPlayerActor myPlayer=new ClientPlayerActor(duel,myEngine,duel.config.mode==Config.neat?Duel.color(0):Duel.color(255));
     myPlayer.xPosition=Const.CANVAS_SIZE*0.5f;
@@ -64,7 +67,7 @@ public final class ClientGameSystem extends ServerGameSystem{
     otherGroup.setPlayer(otherPlayer);
     // other
     commonParticleSet=new ParticleSet(duel,2048);
-    currentState(new StartGameState(duel,this));
+    currentState(new ClientStartGameState(duel,this));
     currentBackground=new GameBackground(duel,Duel.color(224),0.1f);
     // demoPlay=demo;
     showsInstructionWindow=instruction;
@@ -75,13 +78,6 @@ public final class ClientGameSystem extends ServerGameSystem{
       // else return new ComputerLifeEngine((type?duel.player_a:duel.player_b).graphics,duel.neatCenter.getNext());
       return new ComputerLifeEngine((side?duel.player_a:duel.player_b).graphics,duel.neatCenter.getNext(),side);
     }else return new ComputerPlayerEngine(duel::random);
-  }
-  public ClientGameSystem(Duel duel) {
-    this(duel,false,false);
-  }
-  public void run() {
-    update();
-    display();
   }
   public void update() {
     if(demoPlay) {

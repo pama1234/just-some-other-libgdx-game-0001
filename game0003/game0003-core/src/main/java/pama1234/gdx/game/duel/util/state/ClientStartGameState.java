@@ -8,8 +8,8 @@ import pama1234.gdx.game.duel.ClientGameSystem;
 import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.math.UtilMath;
 
-public final class StartGameState extends ClientGameSystemState{
-  public StartGameState(Duel duel,ClientGameSystem system) {
+public final class ClientStartGameState extends ClientGameSystemState{
+  public ClientStartGameState(Duel duel,ClientGameSystem system) {
     super(duel,system);
     system.stateIndex=ClientGameSystem.start;
   }
@@ -62,7 +62,7 @@ public final class StartGameState extends ClientGameSystemState{
         .lifespanSecond(1.0f)
         .build();
       system.commonParticleSet.particleList.add(newParticle);
-      system.currentState(new PlayGameState(duel,system));
+      system.currentState(new ClientPlayGameState(duel,system));
     }
   }
   @Override

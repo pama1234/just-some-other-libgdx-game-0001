@@ -1,8 +1,8 @@
-package pama1234.gdx.game.duel.util.ai.mech;
+package pama1234.app.game.server.duel.util.ai.mesh;
 
+import pama1234.app.game.server.duel.GetRandom;
 import pama1234.app.game.server.duel.util.input.AbstractInputDevice;
 import pama1234.app.game.server.duel.util.player.ServerPlayerActor;
-import pama1234.gdx.game.duel.GetRandom;
 
 public final class JabPlayerPlan extends DefaultPlayerPlan{
   public JabPlayerPlan(GetRandom rng) {

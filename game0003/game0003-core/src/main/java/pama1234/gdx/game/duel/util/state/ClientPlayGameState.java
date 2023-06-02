@@ -12,8 +12,8 @@ import pama1234.gdx.game.duel.TextUtil;
 import pama1234.gdx.game.duel.util.actor.ClientPlayerActor;
 import pama1234.math.UtilMath;
 
-public final class PlayGameState extends ClientGameSystemState{
-  public PlayGameState(Duel duel,ClientGameSystem system) {
+public final class ClientPlayGameState extends ClientGameSystemState{
+  public ClientPlayGameState(Duel duel,ClientGameSystem system) {
     super(duel,system);
     system.stateIndex=ClientGameSystem.play;
   }
@@ -48,8 +48,8 @@ public final class PlayGameState extends ClientGameSystemState{
   }
   @Override
   public void checkStateTransition() {
-    if(system.myGroup.player.isNull()) system.currentState(new GameResultState(duel,system,system.otherGroup.id,TextUtil.used.lose));
-    else if(system.otherGroup.player.isNull()) system.currentState(new GameResultState(duel,system,system.myGroup.id,TextUtil.used.win));
+    if(system.myGroup.player.isNull()) system.currentState(new ClientGameResultState(duel,system,system.otherGroup.id,TextUtil.used.lose));
+    else if(system.otherGroup.player.isNull()) system.currentState(new ClientGameResultState(duel,system,system.myGroup.id,TextUtil.used.win));
   }
   public void checkCollision() {
     final ActorGroup myGroup=duel.system.myGroup;
