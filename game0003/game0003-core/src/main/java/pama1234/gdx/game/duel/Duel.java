@@ -9,7 +9,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import pama1234.app.game.server.duel.Config;
-import pama1234.gdx.game.duel.util.ai.nnet.FisheyeVision;
+import pama1234.gdx.game.duel.util.ai.nnet.ClientFisheyeVision;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter.NetworkGroupParam;
 import pama1234.gdx.game.duel.util.graphics.DemoInfo;
@@ -73,7 +73,7 @@ public class Duel extends ScreenCore2D{
   //---
   // public ShaderProgram polarShader;
   public ShaderProgram cartesianShader;
-  public FisheyeVision player_a,player_b;
+  public ClientFisheyeVision player_a,player_b;
   public int timeLimitConst=60*10;
   public int time,timeLimit=timeLimitConst;
   @Override
@@ -109,10 +109,10 @@ public class Duel extends ScreenCore2D{
         cartesianVisionFrag=Gdx.files.internal("shader/main0005/vision-cartesian.frag").readString();
       cartesianShader=new ShaderProgram(cartesianVisionVert,cartesianVisionFrag);
       int ts=param.canvasSize;
-      player_a=new FisheyeVision(this,
+      player_a=new ClientFisheyeVision(this,
         new ShaderProgram(polarVisionVert,polarVisionFrag),
         new Graphics(this,ts,ts));
-      player_b=new FisheyeVision(this,
+      player_b=new ClientFisheyeVision(this,
         new ShaderProgram(polarVisionVert,polarVisionFrag),
         new Graphics(this,ts,ts));
     }

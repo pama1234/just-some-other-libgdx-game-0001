@@ -5,31 +5,29 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import pama1234.app.game.server.duel.util.Const;
 import pama1234.app.game.server.duel.util.actor.AbstractPlayerActor;
+import pama1234.app.game.server.duel.util.ai.neat.AbstractFisheyeVision;
 import pama1234.gdx.game.duel.Duel;
 import pama1234.gdx.util.element.Graphics;
 
-public class FisheyeVision{
+public class ClientFisheyeVision extends AbstractFisheyeVision{
   public Duel duel;
   public ShaderProgram shader;
   public Color backgroundColor;
   public Graphics graphics;
-  public float camX,camY;
   //---
-  public FisheyeVision(Duel duel,ShaderProgram shader,Graphics graphics) {
+  public ClientFisheyeVision(Duel duel,ShaderProgram shader,Graphics graphics) {
     this.duel=duel;
     this.shader=shader;
     this.graphics=graphics;
     backgroundColor=Duel.color(191);
   }
+  @Override
   public void update(AbstractPlayerActor player) {
+    super.update(player);
     shader.bind();
-    if(Float.isFinite(player.xPosition)&&
-      Float.isFinite(player.yPosition)) {
-      camX=player.xPosition;
-      camY=player.yPosition;
-    }
     shader.setUniformf("u_dist",camX/Const.CANVAS_SIZE,1-camY/Const.CANVAS_SIZE);
   }
+  @Override
   public void render() {
     graphics.begin();
     duel.background(backgroundColor);
