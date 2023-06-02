@@ -16,3 +16,13 @@ implementation "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1
 3. 几何决斗
 4. 高维塔防【另一个git托管】
 5. 杂项
+
+## 几何决斗
+
+作者: FAL ( <https://www.fal-works.com/> )
+
+|目标|完成度|
+|---|---|
+|手机版移植|已完成|
+|游戏添加neat和其他现代AI|进行中|
+|联机版|进行中|
