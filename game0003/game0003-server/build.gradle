@@ -1,5 +1,7 @@
 apply plugin: 'application'
 
+apply plugin: 'com.google.protobuf'
+
 sourceCompatibility = 17
 mainClassName = 'pama1234.gdx.game.app.server.ServerLauncher'
 eclipse.project.name = appName + '-game0003-server'
@@ -8,6 +10,8 @@ dependencies {
   compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
 
   compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version"
+  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version"
+  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
 
   // api 'org.tensorflow:tensorflow-core-platform-gpu:0.5.0'
 }

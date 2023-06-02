@@ -37,7 +37,7 @@ import pama1234.util.localization.Localization;
  * 0.3 (10. Feb. 2018) Minor fix (lack of semicolon). Ver. 0.4 (12. Feb. 2018) Enabled scaling.
  * </p>
  * </p>
- * Modified by: Pama1234 (https://space.bilibili.com/646050693)
+ * Modified by: Pama1234 ( https://space.bilibili.com/646050693 )
  * </p>
  * Altered with self-made framework v0.0.1
  * </p>
