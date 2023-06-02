@@ -1,8 +1,13 @@
 syntax = "proto3";
 
 package pama1234.util.protobuf;
+
 option java_package = "pama1234.util.protobuf";
 option java_outer_classname="PointUpdateProto";
+
+option csharp_namespace = "Pama1234.Util.Protobuf";
+
+option optimize_for = LITE_RUNTIME;
 
 message PointUpdate {
   int32 x = 1;

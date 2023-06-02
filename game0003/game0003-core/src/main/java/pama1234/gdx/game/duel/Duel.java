@@ -78,16 +78,17 @@ public class Duel extends ScreenCore2D{
   public int time,timeLimit=timeLimitConst;
   @Override
   public void init() {
+    config=loadConfig();
+    super.init();
+  }
+  public Config loadConfig() {
     FileHandle configFile=Gdx.files.local("data/config.yaml");
     if(configFile.exists()) {
-      // bundleCenter=new LocalBundleCenter(localization.yaml.load(
-      //   configFile.readString("UTF-8")));
-      config=localization.yaml.loadAs(configFile.readString("UTF-8"),Config.class);
+      return localization.yaml.loadAs(configFile.readString("UTF-8"),Config.class);
     }else {
       Gdx.files.local("data").mkdirs();
-      config=new Config().init(isAndroid);
+      return new Config().init(isAndroid);
     }
-    super.init();
   }
   @Override
   public void setup() {

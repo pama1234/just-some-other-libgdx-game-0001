@@ -1,10 +1,48 @@
 package pama1234.app.game.server.duel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
+
 import pama1234.app.game.server.duel.util.ai.neat.ServerFisheyeVision;
 import pama1234.app.game.server.duel.util.input.ServerInputData;
 import pama1234.util.UtilServer;
+import pama1234.util.localization.Localization;
+import pama1234.util.protobuf.PointUpdateProto.PointUpdate;
+import pama1234.util.protobuf.PointUpdateProto.PointUpdateList;
 
 public class DuelServer extends UtilServer{
+  public static String loadString(File path) {
+    try {
+      InputStream inputStream=new FileInputStream(path);
+      String text=new BufferedReader(new InputStreamReader(inputStream,StandardCharsets.UTF_8))
+        .lines()
+        .collect(Collectors.joining("\n"));
+      inputStream.close();
+      return text;
+    }catch(IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+  public static final Localization localization=new Localization();
+  public File mainDir=new File(System.getProperty("user.dir")+"/data/server/duel");
+  public Config loadConfig() {
+    File configFile=new File(mainDir,"config.yaml");
+    if(configFile.exists()) {
+      return localization.yaml.loadAs(loadString(configFile),Config.class);
+    }else {
+      mainDir.mkdirs();
+      return new Config().init(true);
+    }
+  }
+  public PointUpdate.Builder pointUpdateBuilder;
+  public PointUpdateList.Builder pointUpdateListBuilder;
   public boolean paused;
   public ServerInputData currentInput;
   public Config config;
@@ -14,6 +52,8 @@ public class DuelServer extends UtilServer{
   public int time,timeLimit=timeLimitConst;
   @Override
   public void init() {
+    config=loadConfig();
+    currentInput=new ServerInputData();
     newGame(true);
   }
   @Override
