@@ -6,10 +6,13 @@ public class DuelSever extends UtilServer{
   public ServerGameSystem system;
   @Override
   public void init() {
-    system=new ServerGameSystem();
+    newGame(true);
   }
   @Override
   public void update() {}
   @Override
   public void dispose() {}
+  public void newGame(boolean demo) {
+    system=new ServerGameSystem(demo);
+  }
 }

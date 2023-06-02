@@ -13,7 +13,7 @@ import pama1234.gdx.game.duel.util.graphics.Particle;
 import pama1234.gdx.game.duel.util.graphics.ParticleBuilder;
 import pama1234.gdx.game.duel.util.graphics.ParticleSet;
 import pama1234.gdx.game.duel.util.player.AndroidHumanPlayerEngine;
-import pama1234.gdx.game.duel.util.player.DamagedPlayerActorState;
+import pama1234.gdx.game.duel.util.player.ClientDamagedPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawLongbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.DrawShortbowPlayerActorState;
 import pama1234.gdx.game.duel.util.player.HumanPlayerEngine;
@@ -26,14 +26,10 @@ public final class ClientGameSystem extends ServerGameSystem{
   public final Duel duel;
   public final ParticleSet commonParticleSet;
   public ClientGameSystemState currentState;
-  public int stateIndex;
-  public float screenShakeValue;
-  public final DamagedPlayerActorState damagedState;
+  public final ClientDamagedPlayerActorState damagedState;
   public final GameBackground currentBackground;
-  public final boolean demoPlay;
-  public boolean showsInstructionWindow;
   public ClientGameSystem(Duel duel,boolean demo,boolean instruction) {
-    super();
+    super(demo);
     this.duel=duel;
     // prepare ActorGroup
     myGroup.enemyGroup=otherGroup;
@@ -42,7 +38,7 @@ public final class ClientGameSystem extends ServerGameSystem{
     final MovePlayerActorState moveState=new MovePlayerActorState();
     final DrawBowPlayerActorState drawShortbowState=new DrawShortbowPlayerActorState(duel);
     final DrawBowPlayerActorState drawLongbowState=new DrawLongbowPlayerActorState(duel);
-    damagedState=new DamagedPlayerActorState(duel);
+    damagedState=new ClientDamagedPlayerActorState(duel);
     moveState.drawShortbowState=drawShortbowState;
     moveState.drawLongbowState=drawLongbowState;
     drawShortbowState.moveState=moveState;
@@ -70,7 +66,7 @@ public final class ClientGameSystem extends ServerGameSystem{
     commonParticleSet=new ParticleSet(duel,2048);
     currentState(new StartGameState(duel,this));
     currentBackground=new GameBackground(duel,Duel.color(224),0.1f);
-    demoPlay=demo;
+    // demoPlay=demo;
     showsInstructionWindow=instruction;
   }
   public PlayerEngine createComputerEngine(boolean side) {
