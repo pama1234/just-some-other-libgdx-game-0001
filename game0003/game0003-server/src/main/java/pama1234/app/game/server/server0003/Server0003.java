@@ -14,9 +14,19 @@ import pama1234.util.protobuf.PointUpdateProto.PointUpdateList;
 import pama1234.util.wrapper.Center;
 
 public class Server0003 extends UtilServer{
+  public static void main(String[] args) {
+    new Server0003().run();
+  }
   Center<PointUpdate> pointCenter=new Center<>();
+  ServerSocket serverSocket;
   @Override
-  public void init() {}
+  public void init() {
+    try {
+      serverSocket=new ServerSocket(8080);
+    }catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
   @Override
   public void update() {
     // PointUpdateList listBuild=pointUpdateListBuilder.build();
@@ -51,9 +61,7 @@ public class Server0003 extends UtilServer{
     // 将PointUpdateList对象序列化为字节数组
     byte[] serialized=pointUpdateList.toByteArray();
     // 模拟通过网络通信将字节数组发送到另一个Java程序
-    ServerSocket serverSocket;
     try {
-      serverSocket=new ServerSocket(8080);
       Socket clientSocket=serverSocket.accept();
       OutputStream out=clientSocket.getOutputStream();
       out.write(serialized);

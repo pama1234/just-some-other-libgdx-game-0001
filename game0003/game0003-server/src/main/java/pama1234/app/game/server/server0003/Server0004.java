@@ -10,14 +10,24 @@ import pama1234.util.protobuf.PointUpdateProto.PointUpdate;
 import pama1234.util.wrapper.Center;
 
 public class Server0004 extends UtilServer{
+  public static void main(String[] args) {
+    new Server0004().run();
+  }
   Center<PointUpdate> pointCenter=new Center<>();
+  Socket socket;
+  InputStream in;
   @Override
-  public void init() {}
+  public void init() {
+    try {
+      socket=new Socket("localhost",8080);
+      in=socket.getInputStream();
+    }catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
   @Override
   public void update() {
     try {
-      Socket socket=new Socket("localhost",8080);
-      InputStream in=socket.getInputStream();
       byte[] received=new byte[1024];
       int len=in.read(received);
       OutputStream out=socket.getOutputStream();

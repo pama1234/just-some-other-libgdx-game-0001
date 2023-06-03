@@ -44,7 +44,7 @@ public class DuelServer extends UtilServer{
   public PointUpdate.Builder pointUpdateBuilder;
   public PointUpdateList.Builder pointUpdateListBuilder;
   public boolean paused;
-  public ServerInputData currentInput;
+  public ServerInputData input_a,input_b;
   public Config config;
   public ServerGameSystem system;
   public ServerFisheyeVision player_a,player_b;
@@ -53,12 +53,14 @@ public class DuelServer extends UtilServer{
   @Override
   public void init() {
     config=loadConfig();
-    currentInput=new ServerInputData();
+    input_a=new ServerInputData();
     newGame(true);
   }
   @Override
   public void update() {
     if(!paused) {
+      // InputDataProto.InputData.Builder inputBuilder=InputDataProto.InputData.newBuilder();
+      //---
       system.update();
       //---
       if(config.mode==Config.neat) {

@@ -56,7 +56,7 @@ public class ServerGameSystem{
     else {
       // if(duelServer.isAndroid) myEngine=new AndroidHumanPlayerEngine(duelServer.currentInput);
       // else myEngine=new ServerHumanPlayerEngine(duelServer.currentInput);
-      myEngine=new ServerHumanPlayerEngine(duelServer.currentInput);
+      myEngine=new ServerHumanPlayerEngine(duelServer.input_a);
     }
     ServerPlayerActor myPlayer=new ServerPlayerActor(myEngine);
     myPlayer.xPosition=Const.CANVAS_SIZE*0.5f;
@@ -90,7 +90,7 @@ public class ServerGameSystem{
   }
   public void update() {
     if(demoPlay) {
-      if(duelServer.currentInput.isZPressed) {
+      if(duelServer.input_a.isZPressed&&duelServer.input_b.isZPressed) {
         duelServer.system=new ServerGameSystem(duelServer); // stop demo and start game
         return;
       }

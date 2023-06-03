@@ -3,6 +3,8 @@ package pama1234.gdx.game.duel;
 import static pama1234.app.game.server.duel.Config.neat;
 import static pama1234.app.game.server.duel.util.Const.CANVAS_SIZE;
 
+import java.net.DatagramSocket;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.files.FileHandle;
@@ -23,6 +25,7 @@ import pama1234.gdx.util.info.TouchInfo;
 import pama1234.math.Tools;
 import pama1234.math.UtilMath;
 import pama1234.util.localization.Localization;
+import pama1234.util.protobuf.InputDataProto;
 
 /**
  * Title: Duel
@@ -48,6 +51,21 @@ import pama1234.util.localization.Localization;
  * The font "Unifont" https://unifoundry.com/unifont/ is part of the GNU Project.
  */
 public class Duel extends ScreenCore2D{
+  public enum GameMode{
+    ONLINE,
+    OFFLINE
+  }
+  public class GameClient{
+    public DatagramSocket socket;
+  }
+  public class ClientConfig{
+    public String serverAddr;
+    public int port;
+  }
+  public class LoginInfo{
+    public String userName;
+    public byte[] token;
+  }
   //---
   public static final Localization localization=new Localization();
   // public static LocalBundleCenter bundleCenter;
@@ -76,6 +94,12 @@ public class Duel extends ScreenCore2D{
   public ClientFisheyeVision player_a,player_b;
   public int timeLimitConst=60*10;
   public int time,timeLimit=timeLimitConst;
+  //---
+  public GameMode gameMode;
+  public GameClient gameClient;
+  public ClientConfig clientConfig;
+  public LoginInfo loginInfo;
+  public InputDataProto.InputData.Builder inputDataBuilder;
   @Override
   public void init() {
     config=loadConfig();
@@ -134,6 +158,14 @@ public class Duel extends ScreenCore2D{
       cam2d.activeDrag=false;
       cam2d.activeScrollZoom=cam2d.activeTouchZoom=false;
     }
+    if(gameMode==GameMode.ONLINE) onlineGameSetup();
+  }
+  public void onlineGameSetup() {
+    inputDataBuilder=InputDataProto.InputData.newBuilder();
+  }
+  public void onlineGameUpdate() {
+    currentInput.copyToProto(inputDataBuilder);
+    inputDataBuilder.build();
   }
   @Override
   public void dispose() {
@@ -213,6 +245,9 @@ public class Duel extends ScreenCore2D{
           currentInput.targetTouchMoved(dxCache,dyCache,magCache=UtilMath.min(UtilMath.mag(dxCache,dyCache),maxDist));
         }
       }
+      //---
+      if(gameMode==GameMode.ONLINE) onlineGameUpdate();
+      //---
       system.update();
       //---
       if(config.mode==neat) {
