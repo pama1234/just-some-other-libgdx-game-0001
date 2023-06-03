@@ -3,7 +3,7 @@ package pama1234.gdx.game.duel;
 import static pama1234.app.game.server.duel.Config.neat;
 import static pama1234.app.game.server.duel.util.Const.CANVAS_SIZE;
 
-import java.net.DatagramSocket;
+import java.io.IOException;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import pama1234.app.game.server.duel.Config;
+import pama1234.app.game.server.duel.Config.GameMode;
 import pama1234.gdx.game.duel.util.ai.nnet.ClientFisheyeVision;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter;
 import pama1234.gdx.game.duel.util.ai.nnet.NeatCenter.NetworkGroupParam;
@@ -25,7 +26,9 @@ import pama1234.gdx.util.info.TouchInfo;
 import pama1234.math.Tools;
 import pama1234.math.UtilMath;
 import pama1234.util.localization.Localization;
+import pama1234.util.net.SocketData;
 import pama1234.util.protobuf.InputDataProto;
+import pama1234.util.protobuf.InputDataProto.InputData;
 
 /**
  * Title: Duel
@@ -51,12 +54,9 @@ import pama1234.util.protobuf.InputDataProto;
  * The font "Unifont" https://unifoundry.com/unifont/ is part of the GNU Project.
  */
 public class Duel extends ScreenCore2D{
-  public enum GameMode{
-    ONLINE,
-    OFFLINE
-  }
   public class GameClient{
-    public DatagramSocket socket;
+    // public DatagramSocket socket;
+    public SocketData socketData;
   }
   public class ClientConfig{
     public String serverAddr;
@@ -95,7 +95,6 @@ public class Duel extends ScreenCore2D{
   public int timeLimitConst=60*10;
   public int time,timeLimit=timeLimitConst;
   //---
-  public GameMode gameMode;
   public GameClient gameClient;
   public ClientConfig clientConfig;
   public LoginInfo loginInfo;
@@ -158,14 +157,19 @@ public class Duel extends ScreenCore2D{
       cam2d.activeDrag=false;
       cam2d.activeScrollZoom=cam2d.activeTouchZoom=false;
     }
-    if(gameMode==GameMode.ONLINE) onlineGameSetup();
+    if(config.gameMode==GameMode.OnLine) onlineGameSetup();
   }
   public void onlineGameSetup() {
     inputDataBuilder=InputDataProto.InputData.newBuilder();
   }
   public void onlineGameUpdate() {
     currentInput.copyToProto(inputDataBuilder);
-    inputDataBuilder.build();
+    InputData inputData=inputDataBuilder.build();
+    try {
+      inputData.writeTo(gameClient.socketData.o);
+    }catch(IOException e) {
+      e.printStackTrace();
+    }
   }
   @Override
   public void dispose() {
@@ -246,7 +250,7 @@ public class Duel extends ScreenCore2D{
         }
       }
       //---
-      if(gameMode==GameMode.ONLINE) onlineGameUpdate();
+      if(config.gameMode==GameMode.OnLine) onlineGameUpdate();
       //---
       system.update();
       //---
