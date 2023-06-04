@@ -6,5 +6,5 @@ dependencies {
 
   api project(':game0003:game0003-server')
 
-  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234Version"
+  implementation "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234Version"
 }
