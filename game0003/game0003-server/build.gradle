@@ -9,9 +9,9 @@ eclipse.project.name = appName + '-game0003-server'
 dependencies {
   implementation "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
 
-  api "com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version"
-  api "com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version"
-  api "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
+  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version"
+  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version"
+  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
 
   api "javax.vecmath:vecmath:$vecmathVersion"
   api "com.esotericsoftware:kryo:$kryoVersion"
