@@ -1,13 +1,15 @@
 buildscript {
   repositories {
-  mavenCentral()
-  google()
-  maven { url 'https://s01.oss.sonatype.org' }
-  maven { url 'https://jitpack.io' }
-  mavenLocal()
-  gradlePluginPortal()
-  maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-  maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+    mavenCentral()
+    google()
+    maven { url 'https://s01.oss.sonatype.org' }
+    maven { url 'https://jitpack.io' }
+    mavenLocal()
+    gradlePluginPortal()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+
+    // flatDir { dirs 'file://E:/atimel/2023-06/maven-test' }
   }
   dependencies {
     classpath "com.android.tools.build:gradle:$androidPluginVersion"
