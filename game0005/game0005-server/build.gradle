@@ -5,16 +5,19 @@ mainClassName = 'pama1234.game.app.server.launcher.ServerLauncher'
 eclipse.project.name = appName + '-game0005-server'
 
 dependencies {
-  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
+  implementation "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
 
-  compileOnlyApi "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
+  api "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
 
-  compileOnlyApi 'commons-cli:commons-cli:1.5.0'
+  api 'commons-cli:commons-cli:1.5.0'
 
-  compileOnlyApi 'ai.djl:api:0.21.0'
+  api 'ai.djl:api:0.21.0'
 
-  compileOnlyApi 'ai.djl:basicdataset:0.21.0'
-  compileOnlyApi 'ai.djl:model-zoo:0.21.0'
+  api 'ai.djl:basicdataset:0.21.0'
+  api 'ai.djl:model-zoo:0.21.0'
+  
+  api "javax.vecmath:vecmath:$vecmathVersion"
+  api "com.esotericsoftware:kryo:$kryoVersion"
 }
 
 jar {
