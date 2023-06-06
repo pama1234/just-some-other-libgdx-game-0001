@@ -6,12 +6,21 @@ sourceCompatibility = 17
 mainClassName = 'pama1234.gdx.game.app.server.ServerLauncher'
 eclipse.project.name = appName + '-game0003-server'
 
-dependencies {
-  implementation "com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version"
+// configurations {
+//     all*.exclude group: 'com.esotericsoftware', module: 'kryo'
 
-  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version"
-  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version"
-  implementation "com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version"
+//     all*.exclude group: 'com.github.pama1234.just-some-other-libgdx-game', module: 'framework-localization'
+//     all*.exclude group: 'com.github.pama1234.just-some-other-libgdx-game', module: 'framework-neat'
+//     all*.exclude group: 'com.github.pama1234.just-some-other-libgdx-game', module: 'framework-protobuf'
+//     all*.exclude group: 'com.github.pama1234.just-some-other-libgdx-game', module: 'server-framework'
+// }
+
+dependencies {
+  implementation ("com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234VersionOld")
+
+  api ("com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version")
+  api ("com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version")
+  api ("com.github.pama1234.just-some-other-libgdx-game:framework-neat:$pama1234Version")
 
   api "javax.vecmath:vecmath:$vecmathVersion"
   api "com.esotericsoftware:kryo:$kryoVersion"

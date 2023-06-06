@@ -4,8 +4,8 @@ eclipse.project.name = appName + '-game0003-core'
 dependencies {
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
 
-  implementation "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234Version"
+  api "com.github.pama1234.just-some-other-libgdx-game:framework:$pama1234VersionOld"
 
-  implementation project(':game0003:game0003-server')
+  api project(':game0003:game0003-server')
 
 }
