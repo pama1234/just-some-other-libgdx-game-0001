@@ -15,7 +15,7 @@ dependencies {
 
   api 'ai.djl:basicdataset:0.21.0'
   api 'ai.djl:model-zoo:0.21.0'
-  
+
   api "javax.vecmath:vecmath:$vecmathVersion"
   api "com.esotericsoftware:kryo:$kryoVersion"
 }
@@ -46,5 +46,4 @@ jar {
 }
 
 // Equivalent to the jar task; here for compatibility with gdx-setup.
-task dist(dependsOn: [jar]) {
-}
+task dist(dependsOn: [jar]) { }

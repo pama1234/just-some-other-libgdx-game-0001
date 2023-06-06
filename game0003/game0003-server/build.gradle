@@ -16,7 +16,7 @@ eclipse.project.name = appName + '-game0003-server'
 // }
 
 dependencies {
-  implementation ("com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234VersionOld")
+  implementation ("com.github.pama1234.just-some-other-libgdx-game:server-framework:$pama1234Version")
 
   api ("com.github.pama1234.just-some-other-libgdx-game:framework-localization:$pama1234Version")
   api ("com.github.pama1234.just-some-other-libgdx-game:framework-protobuf:$pama1234Version")
@@ -54,9 +54,10 @@ jar {
 }
 
 // Equivalent to the jar task; here for compatibility with gdx-setup.
-task dist(dependsOn: [jar]) {
-}
+task dist(dependsOn: [jar]) { }
 
-tasks.getByName('distTar') { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
-tasks.getByName('distZip') { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
-tasks.getByName('jar') { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+tasks.distTar { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+tasks.distZip { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+tasks.jar { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+
+java.targetCompatibility = JavaVersion.VERSION_17
